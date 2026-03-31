@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: auteide_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: turnos_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: auteide_backend
+    restart: always
+    ports:
+      - "4000:3000" # Mapeo host:4000 -> container:3000
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/turnos_db
+      PORT: 3000
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build: ./frontend
+    container_name: auteide_frontend
+    restart: always
+    # Sin puerto expuesto al host: solo accesible por Nginx internamente
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - ./README_TECH.md:/app/public/README_TECH.md:ro
+      - ./USER_MANUAL.md:/app/public/USER_MANUAL.md:ro
+
+
+
+  nginx:
+    build: ./nginx
+    container_name: auteide_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+

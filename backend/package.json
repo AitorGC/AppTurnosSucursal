@@ -1,0 +1,41 @@
+{
+  "name": "turnos-backend",
+  "version": "1.0.0",
+  "description": "Backend para Turnos Auteide",
+  "main": "src/index.js",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "db:visual": "prisma studio",
+    "db:beta-reset": "node scripts/prepare_beta.js",
+    "test": "jest --forceExit --runInBand",
+    "test:watch": "jest --watch --forceExit --runInBand"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "clearMocks": true,
+    "testTimeout": 10000
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.3",
+    "node-cron": "^4.2.1",
+    "pg": "^8.11.3",
+    "prisma": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^7.2.2"
+  }
+}

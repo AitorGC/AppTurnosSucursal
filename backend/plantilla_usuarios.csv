@@ -1,0 +1,5 @@
+employeeNumber,name,password,role,branchName,zoneName
+1001,Juan Perez,perez123,employee,Arinaga,Mostrador
+1002,Maria Garcia,garcia456,responsable,Arinaga,Almacén
+2001,Pedro Lopez,lopez789,employee,Los Majuelos,Neumáticos
+2002,Ana Martinez,martinez101,responsable,Los Majuelos,Reparto

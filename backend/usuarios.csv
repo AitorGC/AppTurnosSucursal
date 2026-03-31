@@ -1,0 +1,987 @@
+﻿employeeNumber;name;password;ROLE;branchName;zoneName
+10;CRISTO;123;employee;LOS MAJUELOS;mostrador
+1001;JAVIER DIAZ;123;employee;EL PASO;mostrador
+1002;AITOR RAMIREZ GONZALEZ;123;employee;MECÁNICA;mostrador
+1003;PEDRO LUCIANO SANTANA;123;employee;MECÁNICA;mostrador
+1004;DANIEL LORENZO;123;employee;EL PASO;mostrador
+1005;CRISTIAN HERNANDEZ;123;employee;EL PASO;mostrador
+1006;DANIEL LORENZO;123;employee;BREÑA ALTA;mostrador
+1007;CRISTIAN HERNANDEZ;123;employee;BREÑA ALTA;mostrador
+1009;JUAN JESUS;123;employee;EL PASO;mostrador
+101;BENCHOMO;123;employee;LOS MAJUELOS;mostrador
+1010;JORGE DAVID CARBALLO;123;employee;FUERTEVENTURA;mostrador
+1012;DAVID CURBELO CABRERA;123;employee;MECÁNICA;mostrador
+1013;CRISTOBAL MARTIN;123;employee;LOS MAJUELOS;mostrador
+1014;DAVID CANO BETANCOR;123;employee;MECÁNICA;mostrador
+1015;ALBERTO CANO;123;employee;LAS CHAFIRAS;mostrador
+1016;RAYCO HERNANDEZ;123;employee;LAS CHAFIRAS;mostrador
+1017;DAVID FUMERO;123;employee;LOS MAJUELOS;mostrador
+1018;DANIEL QUINTANA;123;employee;LOS MAJUELOS;mostrador
+1019;BORJA SAMUEL;123;employee;LAS CHAFIRAS;mostrador
+102;VICTOR;123;employee;LAS CHAFIRAS;mostrador
+1020;IZAM AROCHA;123;employee;LOS MAJUELOS;mostrador
+1021;JUAN CARMELO GUEDES;123;employee;EL CUCHILLETE;mostrador
+1022;ALEJANDRO ACOSTA;123;employee;LOS MAJUELOS;mostrador
+1023;ALEJANDRO YUMAR;123;employee;LOS MAJUELOS;mostrador
+1024;NEMESIO;123;employee;EL GORO;mostrador
+1025;VICTOR MANUEL SANCHEZ;123;employee;MECÁNICA;mostrador
+1027;CLAUDIO JOSE;123;employee;MECÁNICA;mostrador
+1028;FRANCISCO JAVIER AFONSO;123;employee;LOS MAJUELOS;mostrador
+1029;RAÚL SAMPER SOSA;123;employee;EL GORO;mostrador
+103;ERNESTO;123;employee;FUERTEVENTURA;mostrador
+1030;GUILLERMO TRUJILLO;123;employee;LOS MAJUELOS;mostrador
+1031;ANGEL PEREZ HERRERA;123;employee;EL CUCHILLETE;mostrador
+1033;ANGEL PEREZ ACOSTA;123;employee;MECÁNICA;mostrador
+1034;KEVIN SANCHEZ SUAREZ;123;employee;LAS CHAFIRAS;mostrador
+1035;LUCIA SANTIAGO;123;employee;ARINAGA;mostrador
+1036;DANIEL GORRIN;123;employee;LA GOMERA;mostrador
+1037;CATHAYSA MENDOZA;123;employee;GÁLDAR;mostrador
+1038;HECTOR AMADOR;123;employee;LA OROTAVA;mostrador
+1039;DANIEL RODRIGUEZ;123;employee;LA OROTAVA;mostrador
+104;SANTIAGO;123;employee;LAS CHAFIRAS;mostrador
+1040;ADAN PERERA;123;employee;LOS MAJUELOS;mostrador
+1042;JOSE FRANCO;123;employee;ARINAGA;mostrador
+1043;XAVIER TICO CLAVIJO;123;employee;ARINAGA;mostrador
+1044;EDGAR ANDRES;123;employee;GÁLDAR;mostrador
+1045;DANIEL JIMÉNEZ;123;employee;EL GORO;mostrador
+1046;AGUSTIN CORUNA;123;employee;MECÁNICA;mostrador
+1047;NEFTALÍ JOSÉ RAMOS;123;employee;EL GORO;mostrador
+1049;VANESA CASTRO;123;employee;FUERTEVENTURA;mostrador
+1050;NESTOR GONZALEZ;123;employee;LOS MAJUELOS;mostrador
+1051;RICHEL HERNANDEZ;123;employee;LOS MAJUELOS;mostrador
+1052;ELVIS JOSUE GONZALEZ;123;employee;MECÁNICA;mostrador
+1053;DIDAC BROS;123;employee;ELÉCTRICA;mostrador
+1054;RAQUEL RODRIGUEZ;123;employee;ELÉCTRICA;mostrador
+1055;RAQUEL;123;employee;ELÉCTRICA;mostrador
+1056;REY RAFAEL MATAMOROS;123;employee;EL GORO;mostrador
+1057;BRIAN SOCAS;123;employee;LOS MAJUELOS;mostrador
+1058;VICENTE GONZALEZ;123;employee;LOS MAJUELOS;mostrador
+1059;JOSE ADAN DENIZ;123;employee;ARINAGA;mostrador
+106;JOSE;123;employee;FUERTEVENTURA;mostrador
+1060;CRISTINA MARTIN;123;employee;EL GORO;mostrador
+1061;DANIEL AFONSO;123;employee;FUERTEVENTURA;mostrador
+1063;JESUS DANIEL;123;employee;LOS MAJUELOS;mostrador
+1064;JONAS TORRES;123;employee;LOS MAJUELOS;mostrador
+1065;EINAR NUÑEZ;123;employee;LOS MAJUELOS;mostrador
+1066;DANIEL VARGAS;123;employee;LOS MAJUELOS;mostrador
+1067;ISRAEL SALAS SANTANA;123;employee;EL GORO;mostrador
+1068;ROBERTO LUIS;123;employee;EL PASO;mostrador
+1069;ANDRES DE LEON DARIAS;123;employee;EL CUCHILLETE;mostrador
+107;MAIKEL;123;employee;LAS CHAFIRAS;mostrador
+1070;NAUZET MARTIN;123;employee;LOS MAJUELOS;mostrador
+1071;JOHANDER CALDERON;123;employee;LOS MAJUELOS;mostrador
+1073;LUIS ALVAREZ ISER;123;employee;FUERTEVENTURA;mostrador
+1074;JORGE GAMEZ;123;employee;ELÉCTRICA;mostrador
+1075;ALEXANDER MONTESDEOCA;123;employee;MECÁNICA;mostrador
+1076;AARÓN PÉREZ GONZÁLEZ;123;employee;EL GORO;mostrador
+1077;ECHEDEY PEÑA SANTANA;123;employee;EL GORO;mostrador
+1078;MIGUEL DAVID SANCHEZ;123;employee;EL CUCHILLETE;mostrador
+1079;KYOBE LEÓN FRANCISCO;123;employee;EL GORO;mostrador
+1080;OLIVER SANCHEZ;123;employee;GÁLDAR;mostrador
+1081;HECTOR ALONSO RODRIGUEZ;123;employee;ARINAGA;mostrador
+1082;DAVID GONZALEZ;123;employee;ARINAGA;mostrador
+1083;DARIO VELAZQUEZ;123;employee;LOS MAJUELOS;mostrador
+1084;CRISTIAN GARCIA;123;employee;LOS MAJUELOS;mostrador
+1085;IVÁN SANTIAGO DELGADO;123;employee;EL GORO;mostrador
+1086;ALEJANDRO MARTIN;123;employee;LAS CHAFIRAS;mostrador
+1087;ROBERTO LUIS;123;employee;BREÑA ALTA;mostrador
+1088;SERGIO FIERRO;123;employee;LOS MAJUELOS;mostrador
+1089;ANTONIO DE LA NUEZ;123;employee;ARINAGA;mostrador
+1090;JOSE AIRAM RODRIGUEZ;123;employee;LOS MAJUELOS;mostrador
+1091;RICARDO PENA;123;employee;GÁLDAR;mostrador
+1092;ERASMO DE LEON;123;employee;LOS MAJUELOS;mostrador
+1093;NAHUM MARTIN;123;employee;LOS MAJUELOS;mostrador
+1094;FINLEY JACOB;123;employee;LAS CHAFIRAS;mostrador
+1095;DANIEL TRANCHE;123;employee;ELÉCTRICA;mostrador
+1096;CRISTO MANUEL PEÑA;123;employee;EL CUCHILLETE;mostrador
+1097;FABIAN CORDOVEZ;123;employee;LA GOMERA;mostrador
+1098;CARMEN ABEJER;123;employee;ELÉCTRICA;mostrador
+1099;JESUS CASIMIRO;123;employee;ELÉCTRICA;mostrador
+11;ADAY;123;employee;MECÁNICA;mostrador
+1100;ZULEMA VEGA RODRÍGUEZ;123;employee;EL GORO;mostrador
+1101;ALEJANDRO AFONSO;123;employee;LOS MAJUELOS;mostrador
+1102;ABRAHAM SUÁREZ GARCÍA;123;employee;EL GORO;mostrador
+1103;JUAN MANUEL RGUEZ. OLIVAR;123;employee;MECÁNICA;mostrador
+1105;YAHIMA JIMÉNEZ DÍAZ;123;employee;EL GORO;mostrador
+1106;EZEQUIEL SANCHEZ;123;employee;FUERTEVENTURA;mostrador
+1107;JULIAN VETIZ MENDEZ;123;employee;MECÁNICA;mostrador
+1108;FRANCISCO HERRERA;123;employee;MECÁNICA;mostrador
+1109;ALEJANDRO SANTANA MACHIN;123;employee;FUERTEVENTURA;mostrador
+1110;JORGE GAMEZ;123;employee;MECÁNICA;mostrador
+1111;LETICIA SANCHEZ;123;employee;ELÉCTRICA;mostrador
+1112;FIDEL FERNANDEZ;123;employee;LOS MAJUELOS;mostrador
+1113;SARA PEREZ;123;employee;LOS MAJUELOS;mostrador
+1114;LESSLIE TOBAR;123;employee;ARINAGA;mostrador
+1115;FRANCISCO PEREZ;123;employee;MECÁNICA;mostrador
+1116;HECTOR MONTESDEOCA;123;employee;GÁLDAR;mostrador
+1117;AYOZE PIMIENTA;123;employee;LOS MAJUELOS;mostrador
+1119;DANIEL GONZALES;123;employee;FUERTEVENTURA;mostrador
+112;VILLALBA;123;employee;GÁLDAR;mostrador
+1120;IVAN GONZALEZ;123;employee;LOS MAJUELOS;mostrador
+1121;JASON VIERA PADRÓN;123;employee;EL GORO;mostrador
+1122;ANTONIO MARTIN;123;employee;BREÑA ALTA;mostrador
+1123;MUSTAPHA KALLE;123;employee;EL CUCHILLETE;mostrador
+1124;TINGUARO CABRERA NAVARRO;123;employee;EL GORO;mostrador
+1125;CRISTAN LEO MARMOLEJOS;123;employee;FUERTEVENTURA;mostrador
+1126;JULIO SOSA;123;employee;ARINAGA;mostrador
+1127;FELIX DIOS;123;employee;LOS MAJUELOS;mostrador
+1128;GREGORIO DORTA;123;employee;LOS MAJUELOS;mostrador
+1129;MANUEL BLANCO;123;employee;ARINAGA;mostrador
+113;ANGEL;123;employee;GÁLDAR;mostrador
+1130;JESUS ARBELAY;123;employee;ICOD;mostrador
+1131;JORGE REYES;123;employee;LOS MAJUELOS;mostrador
+1132;GUSTAVO AGUSTIN TORREZ;123;employee;FUERTEVENTURA;mostrador
+1133;FRANCISCO GONZALEZ;123;employee;BREÑA ALTA;mostrador
+1134;JONATAN PEREZ;123;employee;BREÑA ALTA;mostrador
+1135;DAILOS BRITO;123;employee;LAS CHAFIRAS;mostrador
+1136;RAUL DIAZ;123;employee;LAS CHAFIRAS;mostrador
+1137;CARLOS FRANCO;123;employee;LOS MAJUELOS;mostrador
+1138;JOSE HERNANDEZ;123;employee;LAS CHAFIRAS;mostrador
+1139;PATRICIA DONATE;123;employee;LAS CHAFIRAS;mostrador
+114;EDUARDO;123;employee;GÁLDAR;mostrador
+1140;CANDELARIA NUEZ SANTANA;123;employee;ELÉCTRICA;mostrador
+1141;ARISLEIDA CERPA RODRÍGUEZ;123;employee;EL GORO;mostrador
+1142;SALIDA ALMACEN;123;employee;MECÁNICA;mostrador
+1144;AYOSE RODRIGUEZ SÁNCHEZ;123;employee;MECÁNICA;mostrador
+1145;VANESA CASTRO SANTANA;123;employee;EL CUCHILLETE;mostrador
+1146;CARLOS HENRIQUEZ;123;employee;LOS MAJUELOS;mostrador
+1147;ELVIO PEREYRA;123;employee;MECÁNICA;mostrador
+1148;Yeray Martín;123;employee;LOS MAJUELOS;mostrador
+1149;JOSE DAVID ROLO;123;employee;ICOD;mostrador
+115;CARDENES;123;employee;GÁLDAR;mostrador
+1150;FABIO ETT;123;employee;ICOD;mostrador
+1151;AYOSE RODRIGUEZ RODRIGUEZ;123;employee;MECÁNICA;mostrador
+1152;ALEJANDRO MONTENEGRO SANT;123;employee;MECÁNICA;mostrador
+1153;ALEXANDRE MEDINA LORENZO;123;employee;MECÁNICA;mostrador
+1154;JUAN CARLOS DIAZ;123;employee;ARINAGA;mostrador
+1155;IVAN ETT;123;employee;ICOD;mostrador
+116;MARCIAL;123;employee;GÁLDAR;mostrador
+117;ALBERTO;123;employee;ICOD;mostrador
+118;PEDRO;123;employee;ICOD;mostrador
+119;SAMUEL;123;employee;ARINAGA;mostrador
+12;ARISTIDES;123;employee;LOS MAJUELOS;mostrador
+120;JESUS QUINTANA;123;employee;ARINAGA;mostrador
+121;CHRISTIAN FLEITAS;123;employee;ARINAGA;mostrador
+122;JAVIER;123;employee;ELÉCTRICA;mostrador
+123;QUIQUE;123;employee;ELÉCTRICA;mostrador
+124;CARDENES;123;employee;ELÉCTRICA;mostrador
+125;EDUARDO;123;employee;ELÉCTRICA;mostrador
+126;BRAULIO;123;employee;MECÁNICA;mostrador
+127;RAYCO DAVID;123;employee;ARINAGA;mostrador
+128;LUIS;123;employee;EL PASO;mostrador
+129;ORLANDO;123;employee;ARINAGA;mostrador
+13;ANGELICA;123;employee;LOS MAJUELOS;mostrador
+130;BRAULIO;123;employee;ELÉCTRICA;mostrador
+131;MOISES;123;employee;ELÉCTRICA;mostrador
+132;MARCIAL;123;employee;ELÉCTRICA;mostrador
+133;BRUNO;123;employee;ELÉCTRICA;mostrador
+134;VILLALBA;123;employee;ELÉCTRICA;mostrador
+135;YERAY RAMOS;123;employee;ARINAGA;mostrador
+136;YERAY ALBERO;123;employee;ARINAGA;mostrador
+137;ALEXIS LOPEZ;123;employee;ARINAGA;mostrador
+138;JAIME DOMINGUEZ;123;employee;ARINAGA;mostrador
+139;ALFREDO;123;employee;LA OROTAVA;mostrador
+14;IVAN;123;employee;LOS MAJUELOS;mostrador
+140;ALEJANDRO;123;employee;LA GOMERA;mostrador
+141;GILBERTO;123;employee;LA GOMERA;mostrador
+142;JOSE JAVIER;123;employee;LA OROTAVA;mostrador
+143;DANIEL;123;employee;LA GOMERA;mostrador
+144;ERIK;123;employee;LA OROTAVA;mostrador
+145;ENRIQUE;123;employee;LOS MAJUELOS;mostrador
+146;SERGIO;123;employee;EL PASO;mostrador
+147;RICARDO;123;employee;LA OROTAVA;mostrador
+148;ROGELIO;123;employee;ELÉCTRICA;mostrador
+149;DANI ALAMO;123;employee;ELÉCTRICA;mostrador
+15;CUPER;123;employee;LOS MAJUELOS;mostrador
+150;DANIEL;123;employee;ELÉCTRICA;mostrador
+151;HECTOR;123;employee;ARINAGA;mostrador
+152;ADAY REYES;123;employee;MECÁNICA;mostrador
+160;JAVI;123;employee;LA OROTAVA;mostrador
+161;JESUS;123;employee;LA OROTAVA;mostrador
+162;TOÑO;123;employee;LA OROTAVA;mostrador
+163;ALFONSO;123;employee;LA OROTAVA;mostrador
+164;PACO;123;employee;LA OROTAVA;mostrador
+165;BENCHOMO;123;employee;LA OROTAVA;mostrador
+166;JOSE;123;employee;LA OROTAVA;mostrador
+167;SEMIDAN;123;employee;LA OROTAVA;mostrador
+168;JACOB;123;employee;GÁLDAR;mostrador
+169;CUPER;123;employee;LA OROTAVA;mostrador
+170;JOSE JUAN;123;employee;GÁLDAR;mostrador
+171;GERMAN;123;employee;MECÁNICA;mostrador
+172;GERMAN;123;employee;ELÉCTRICA;mostrador
+173;GERMAN;123;employee;GÁLDAR;mostrador
+174;NICOLAS;123;employee;MECÁNICA;mostrador
+175;GUSTAVO;123;employee;MECÁNICA;mostrador
+176;IVAN;123;employee;ARINAGA;mostrador
+177;BRITO;123;employee;EL PASO;mostrador
+178;PACO;123;employee;GÁLDAR;mostrador
+18;CARDENES;123;employee;MECÁNICA;mostrador
+180;YOANA;123;employee;LAS CHAFIRAS;mostrador
+181;AGONEY;123;employee;FUERTEVENTURA;mostrador
+182;AGUSTIN;123;employee;MECÁNICA;mostrador
+183;AGUSTIN;123;employee;ELÉCTRICA;mostrador
+184;l;123;employee;LOS MAJUELOS;mostrador
+185;RAFA;123;employee;MECÁNICA;mostrador
+186;LOLI;123;employee;LA OROTAVA;mostrador
+189;PEPE;123;employee;MECÁNICA;mostrador
+19;VILLALBA;123;employee;MECÁNICA;mostrador
+191;JUAN;123;employee;ARINAGA;mostrador
+192;JOSE JUAN;123;employee;MECÁNICA;mostrador
+193;RICARDO;123;employee;ELÉCTRICA;mostrador
+195;YESSICA;123;employee;GÁLDAR;mostrador
+196;PINO;123;employee;ARINAGA;mostrador
+197;ADRIAN;123;employee;MECÁNICA;mostrador
+198;FERNANDO;123;employee;MECÁNICA;mostrador
+199;CARMEN;123;employee;MECÁNICA;mostrador
+2;YERAY;123;employee;MECÁNICA;mostrador
+20;MARCIAL;123;employee;MECÁNICA;mostrador
+21;BRUNO;123;employee;MECÁNICA;mostrador
+222;YERAY;123;employee;MECÁNICA;mostrador
+240;LUIS;123;employee;MECÁNICA;mostrador
+241;NICASIO;123;employee;MECÁNICA;mostrador
+242;JUANJO;123;employee;MECÁNICA;mostrador
+243;JONATHAN;123;employee;MECÁNICA;mostrador
+244;JACOB-ORTEGA;123;employee;GÁLDAR;mostrador
+245;MIGUEL ANGEL;123;employee;GÁLDAR;mostrador
+246;NORBERTO;123;employee;GÁLDAR;mostrador
+247;FRAN;123;employee;ELÉCTRICA;mostrador
+248;RUBEN;123;employee;FUERTEVENTURA;mostrador
+250;JORGE;123;employee;EL PASO;mostrador
+251;ERICA;123;employee;EL PASO;mostrador
+252;DIEPA;123;employee;MECÁNICA;mostrador
+253;JAVIER;123;employee;LA GOMERA;mostrador
+254;GILBERTO;123;employee;LA OROTAVA;mostrador
+255;ACOIDAN;123;employee;GÁLDAR;mostrador
+256;JOSE;123;employee;LOS MAJUELOS;mostrador
+257;VICTOR;123;employee;LOS MAJUELOS;mostrador
+258;PEDRO;123;employee;LOS MAJUELOS;mostrador
+259;ALEJANDRO;123;employee;LA OROTAVA;mostrador
+260;JOSE SOTANO;123;employee;ELÉCTRICA;mostrador
+261;AITOR;123;employee;LAS CHAFIRAS;mostrador
+262;DORIAN;123;employee;LAS CHAFIRAS;mostrador
+263;JUAN;123;employee;LAS CHAFIRAS;mostrador
+264;DAVID;123;employee;ARINAGA;mostrador
+265;DANIEL;123;employee;MECÁNICA;mostrador
+266;ALBERTO;123;employee;LOS MAJUELOS;mostrador
+267;JORGE;123;employee;BREÑA ALTA;mostrador
+268;MERIDA;123;employee;FUERTEVENTURA;mostrador
+269;ADAY;123;employee;GÁLDAR;mostrador
+270;ARTURO;123;employee;BREÑA ALTA;mostrador
+271;ARTURO;123;employee;EL PASO;mostrador
+272;ERIKA;123;employee;BREÑA ALTA;mostrador
+273;FRANCIS;123;employee;BREÑA ALTA;mostrador
+274;CUPER;123;employee;LAS CHAFIRAS;mostrador
+275;IVAN;123;employee;BREÑA ALTA;mostrador
+276;VICTOR;123;employee;BREÑA ALTA;mostrador
+277;JONAY;123;employee;LA OROTAVA;mostrador
+278;GERARDO;123;employee;ELÉCTRICA;mostrador
+28;MOISES;123;employee;MECÁNICA;mostrador
+280;KIKO;123;employee;LA GOMERA;mostrador
+281;ALBERTO;123;employee;LA OROTAVA;mostrador
+282;DORIAN;123;employee;LOS MAJUELOS;mostrador
+283;ADAY;123;employee;ELÉCTRICA;mostrador
+284;IVAN;123;employee;LA OROTAVA;mostrador
+285;JONAY;123;employee;LOS MAJUELOS;mostrador
+286;ALBERTO;123;employee;MECÁNICA;mostrador
+287;ANGEL;123;employee;LOS MAJUELOS;mostrador
+288;VICTOR;123;employee;GÁLDAR;mostrador
+289;VICTOR;123;employee;ARINAGA;mostrador
+290;JOSE JUAN;123;employee;LOS MAJUELOS;mostrador
+291;JOSE JUAN;123;employee;LA OROTAVA;mostrador
+292;ANGELO;123;employee;LOS MAJUELOS;mostrador
+293;JUANJO;123;employee;BREÑA ALTA;mostrador
+294;GUSTAVO;123;employee;ELÉCTRICA;mostrador
+295;GRACILIANO;123;employee;LAS CHAFIRAS;mostrador
+297;JUAN;123;employee;LOS MAJUELOS;mostrador
+298;IVAN (MARKETING);123;employee;MECÁNICA;mostrador
+299;LOLI;123;employee;LOS MAJUELOS;mostrador
+300;RAMON;123;employee;ELÉCTRICA;mostrador
+301;QUICO;123;employee;LAS CHAFIRAS;mostrador
+302;JOSE AGUSTIN;123;employee;FUERTEVENTURA;mostrador
+303;VICTOR;123;employee;MECÁNICA;mostrador
+304;RICHARD;123;employee;FUERTEVENTURA;mostrador
+305;KILIAN;123;employee;FUERTEVENTURA;mostrador
+306;SANTIAGO;123;employee;ELÉCTRICA;mostrador
+307;RAFAEL;123;employee;ELÉCTRICA;mostrador
+308;DAMIAN;123;employee;LAS CHAFIRAS;mostrador
+309;MARIA JESUS;123;employee;GÁLDAR;mostrador
+310;RUYMAN;123;employee;ELÉCTRICA;mostrador
+311;ACOIDAN;123;employee;ARINAGA;mostrador
+312;JAVIER;123;employee;LOS MAJUELOS;mostrador
+313;CRISTO JOSE;123;employee;LOS MAJUELOS;mostrador
+314;ANTONIO;123;employee;MECÁNICA;mostrador
+315;MICHEL;123;employee;MECÁNICA;mostrador
+316;ALEXIS;123;employee;FUERTEVENTURA;mostrador
+317;JESUS MANUEL LUIS ACOSTA;123;employee;LOS MAJUELOS;mostrador
+318;CARLOS ESPINOSA BARRETO;123;employee;LOS MAJUELOS;mostrador
+319;ADALBERTO GARCIA GARCIA;123;employee;LOS MAJUELOS;mostrador
+320;AUTOMATICOS;123;employee;ELÉCTRICA;mostrador
+321;DAVID;123;employee;MECÁNICA;mostrador
+322;LORENZO;123;employee;GÁLDAR;mostrador
+323;MICHEL;123;employee;GÁLDAR;mostrador
+324;NEMESIO;123;employee;GÁLDAR;mostrador
+325;VICENTE;123;employee;LA GOMERA;mostrador
+326;JOSE ANTONIO;123;employee;LA GOMERA;mostrador
+327;JESUS AGUILERA;123;employee;MECÁNICA;mostrador
+328;l;123;employee;FUERTEVENTURA;mostrador
+329;JOSE OLIVER DIAZ RAMOS;123;employee;LOS MAJUELOS;mostrador
+330;LORENZO;123;employee;ELÉCTRICA;mostrador
+331;JUANJO;123;employee;ELÉCTRICA;mostrador
+332;AYOSE;123;employee;MECÁNICA;mostrador
+333;DOMINGO;123;employee;MECÁNICA;mostrador
+334;CHARLY;123;employee;ELÉCTRICA;mostrador
+335;GABRIEL;123;employee;ELÉCTRICA;mostrador
+337;DAVID;123;employee;LA OROTAVA;mostrador
+338;RAICO;123;employee;LOS MAJUELOS;mostrador
+339;JAVIER;123;employee;EL PASO;mostrador
+340;REYNALDO;123;employee;ELÉCTRICA;mostrador
+341;CARLOS;123;employee;LAS CHAFIRAS;mostrador
+342;GUTI;123;employee;FUERTEVENTURA;mostrador
+343;ISRAEL;123;employee;ELÉCTRICA;mostrador
+344;KEVIN;123;employee;ELÉCTRICA;mostrador
+345;JUAN CARLOS;123;employee;ELÉCTRICA;mostrador
+346;IVAN AYOSE;123;employee;EL GORO;mostrador
+347;YERAY ALBERO;123;employee;EL GORO;mostrador
+348;JESUS;123;employee;EL GORO;mostrador
+349;ALBARO;123;employee;ELÉCTRICA;mostrador
+350;DOMINGO DAVID BRITO;123;employee;LOS MAJUELOS;mostrador
+351;ALEJANDRO TORRES ARROCHA;123;employee;LOS MAJUELOS;mostrador
+352;HUMBERTO LEROY GARCIA;123;employee;LOS MAJUELOS;mostrador
+353;CESAR DELGADO REYES;123;employee;LOS MAJUELOS;mostrador
+354;JONATHAN ALBERTO CARBALLO;123;employee;LOS MAJUELOS;mostrador
+355;RUBEN;123;employee;MECÁNICA;mostrador
+356;JUAN FRANCISCO GUERRA;123;employee;ELÉCTRICA;mostrador
+357;DAVID FALCON;123;employee;GÁLDAR;mostrador
+358;RAFAEL TAISMA;123;employee;ELÉCTRICA;mostrador
+359;DAVID GARCIA;123;employee;LA OROTAVA;mostrador
+36;EDUARDO;123;employee;MECÁNICA;mostrador
+360;SAMUEL;123;employee;GÁLDAR;mostrador
+361;IVAN;123;employee;LA GOMERA;mostrador
+362;JOSE DOMINGO;123;employee;LA OROTAVA;mostrador
+363;MARCOS;123;employee;LAS CHAFIRAS;mostrador
+364;NOEL;123;employee;LAS CHAFIRAS;mostrador
+365;FORO;123;employee;LAS CHAFIRAS;mostrador
+366;AYOZE;123;employee;BREÑA ALTA;mostrador
+367;SERGIO;123;employee;FUERTEVENTURA;mostrador
+369;DANIEL;123;employee;LA OROTAVA;mostrador
+370;JOSE;123;employee;ICOD;mostrador
+371;DAVID CRUZ;123;employee;ICOD;mostrador
+372;DAVID;123;employee;ICOD;mostrador
+373;ANTONIO;123;employee;ICOD;mostrador
+374;MARIANO;123;employee;ICOD;mostrador
+375;IVAN;123;employee;ICOD;mostrador
+376;I02;123;employee;ICOD;mostrador
+377;CUPER;123;employee;ICOD;mostrador
+378;RAUL;123;employee;FUERTEVENTURA;mostrador
+379;MANOLO;123;employee;ELÉCTRICA;mostrador
+380;PACO;123;employee;LOS MAJUELOS;mostrador
+381;GUSTAVO;123;employee;MECÁNICA;mostrador
+382;ERIC;123;employee;LA OROTAVA;mostrador
+383;JORGE;123;employee;ICOD;mostrador
+384;JORGE;123;employee;LA OROTAVA;mostrador
+385;ARISTIDES;123;employee;FUERTEVENTURA;mostrador
+386;ECHEDEY;123;employee;FUERTEVENTURA;mostrador
+387;DANIEL;123;employee;FUERTEVENTURA;mostrador
+388;MANUEL;123;employee;FUERTEVENTURA;mostrador
+389;RAYCO;123;employee;LOS MAJUELOS;mostrador
+390;ISAAC;123;employee;LOS MAJUELOS;mostrador
+391;GASTON;123;employee;LOS MAJUELOS;mostrador
+392;SANTIAGO;123;employee;MECÁNICA;mostrador
+393;FERNANDO;123;employee;LAS CHAFIRAS;mostrador
+394;EDER;123;employee;LAS CHAFIRAS;mostrador
+395;PEDRO;123;employee;LOS MAJUELOS;mostrador
+396;l;123;employee;LOS MAJUELOS;mostrador
+397;MAURIZIO;123;employee;ELÉCTRICA;mostrador
+398;PABLO;123;employee;ARINAGA;mostrador
+399;ORTIZ;123;employee;FUERTEVENTURA;mostrador
+400;ZEBENZUI;123;employee;BREÑA ALTA;mostrador
+401;PILAR;123;employee;FUERTEVENTURA;mostrador
+402;LUIS MIGUEL;123;employee;ICOD;mostrador
+403;AIRAM;123;employee;FUERTEVENTURA;mostrador
+404;EDUARDO;123;employee;FUERTEVENTURA;mostrador
+405;SAMUEL;123;employee;LOS MAJUELOS;mostrador
+406;HECTOR;123;employee;LOS MAJUELOS;mostrador
+407;KEVIN;123;employee;MECÁNICA;mostrador
+408;DAVID MOLERO;123;employee;MECÁNICA;mostrador
+409;DAVID;123;employee;LOS MAJUELOS;mostrador
+410;SUSO;123;employee;LA GOMERA;mostrador
+411;JAVIER;123;employee;ICOD;mostrador
+412;NICASIO;123;employee;ARINAGA;mostrador
+413;CARMEN;123;employee;GÁLDAR;mostrador
+414;PEDRO;123;employee;GÁLDAR;mostrador
+415;ADRIAN GIL;123;employee;FUERTEVENTURA;mostrador
+416;DAVID ELVIRA;123;employee;LAS CHAFIRAS;mostrador
+417;JUAN PEDRO;123;employee;LOS MAJUELOS;mostrador
+418;DAVID;123;employee;GÁLDAR;mostrador
+419;JAVIER;123;employee;ARINAGA;mostrador
+420;IBAN HERNANDEZ;123;employee;EL GORO;mostrador
+421;JAVIER GUERRA;123;employee;EL GORO;mostrador
+422;NICASIO;123;employee;EL GORO;mostrador
+423;SAMUEL GONZALEZ;123;employee;EL GORO;mostrador
+424;ALM01;123;employee;EL GORO;mostrador
+425;NEMESIO;123;employee;EL GORO;mostrador
+426;JOSUE;123;employee;LOS MAJUELOS;mostrador
+427;DAVID PEREZ;123;employee;LA OROTAVA;mostrador
+428;FRANCIS;123;employee;ARINAGA;mostrador
+429;HECTOR;123;employee;EL GORO;mostrador
+430;ACOIDAN;123;employee;EL GORO;mostrador
+431;JESUS QUINTANA;123;employee;EL GORO;mostrador
+432;FRANCISCO DOMINGUEZ;123;employee;EL GORO;mostrador
+433;JOSE SUAREZ;123;employee;EL GORO;mostrador
+434;OCTAVIO HUERTAS;123;employee;EL GORO;mostrador
+435;JAIME;123;employee;EL GORO;mostrador
+436;VICTOR;123;employee;EL GORO;mostrador
+437;OFICINA EL GORO;123;employee;EL GORO;mostrador
+438;JORGE;123;employee;LAS CHAFIRAS;mostrador
+439;ARENAS;123;employee;ARINAGA;mostrador
+440;DAVID;123;employee;EL GORO;mostrador
+441;ADRIAN GARCIA;123;employee;LAS CHAFIRAS;mostrador
+442;JUAN PEDRO;123;employee;LAS CHAFIRAS;mostrador
+443;DAVID MOLERO;123;employee;ELÉCTRICA;mostrador
+444;JORGE;123;employee;LOS MAJUELOS;mostrador
+445;DANIEL BRITO;123;employee;MECÁNICA;mostrador
+446;MARIOLA;123;employee;GÁLDAR;mostrador
+447;DIEPA;123;employee;ELÉCTRICA;mostrador
+448;VICTOR VEGA;123;employee;ARINAGA;mostrador
+449;CARMELO;123;employee;LOS MAJUELOS;mostrador
+450;GABRIEL;123;employee;FUERTEVENTURA;mostrador
+451;JOSE DAVID;123;employee;LAS CHAFIRAS;mostrador
+454;FRAN PEREZ;123;employee;LOS MAJUELOS;mostrador
+455;JONAY GARCIA;123;employee;LA OROTAVA;mostrador
+456;MOISES;123;employee;LAS CHAFIRAS;mostrador
+457;JAVIER;123;employee;BREÑA ALTA;mostrador
+458;ALEJANDRO;123;employee;ELÉCTRICA;mostrador
+459;ROBERTO;123;employee;ICOD;mostrador
+460;DANIEL;123;employee;ARINAGA;mostrador
+461;JORGE ARTEAGA;123;employee;LA GOMERA;mostrador
+462;JOEL;123;employee;EL GORO;mostrador
+463;JONATHAN;123;employee;EL GORO;mostrador
+464;DANIEL HERRERA;123;employee;LA OROTAVA;mostrador
+465;BORJA;123;employee;LA OROTAVA;mostrador
+466;IMANOL;123;employee;LA OROTAVA;mostrador
+467;JOSUE;123;employee;LOS MAJUELOS;mostrador
+468;JOSUE;123;employee;LA OROTAVA;mostrador
+471;JONATHAN NARANJO;123;employee;GÁLDAR;mostrador
+472;RAYCO;123;employee;FUERTEVENTURA;mostrador
+474;JONATHAN NARANJO;123;employee;MECÁNICA;mostrador
+475;AYOZE RODRIGUEZ;123;employee;MECÁNICA;mostrador
+477;YESSENIA;123;employee;GÁLDAR;mostrador
+478;JAVIER SANTANA;123;employee;EL GORO;mostrador
+480;ADRIAN BATISTA;123;employee;FUERTEVENTURA;mostrador
+481;JORGE HERNANDEZ;123;employee;LOS MAJUELOS;mostrador
+482;ELIO;123;employee;ELÉCTRICA;mostrador
+483;MARIANO;123;employee;LOS MAJUELOS;mostrador
+484;VERONICA SANTANA;123;employee;FUERTEVENTURA;mostrador
+485;IBON;123;employee;ELÉCTRICA;mostrador
+486;VICTOR RODRIGUEZ;123;employee;ARINAGA;mostrador
+487;KEVIN DIAZ;123;employee;ARINAGA;mostrador
+488;IVAN GONZALEZ;123;employee;LOS MAJUELOS;mostrador
+489;ADRIAN LUIS;123;employee;LAS CHAFIRAS;mostrador
+49;JOSE JUAN;123;employee;LOS MAJUELOS;mostrador
+490;MIGUEL;123;employee;LAS CHAFIRAS;mostrador
+491;MAIKEL;123;employee;LAS CHAFIRAS;mostrador
+492;MARCOS MENDOZA;123;employee;LAS CHAFIRAS;mostrador
+493;JONATHAN;123;employee;LAS CHAFIRAS;mostrador
+494;ADAY;123;employee;LAS CHAFIRAS;mostrador
+495;GUILLERMO;123;employee;LOS MAJUELOS;mostrador
+496;ALEJANDRO;123;employee;MECÁNICA;mostrador
+497;GREGORIO VEGA;123;employee;EL GORO;mostrador
+498;DANIEL GUEDES;123;employee;EL GORO;mostrador
+499;YERAY REVERT;123;employee;EL GORO;mostrador
+50;VICTOR;123;employee;LOS MAJUELOS;mostrador
+500;JESUS ALBERTO;123;employee;LA OROTAVA;mostrador
+501;JUAN CARLOS;123;employee;MECÁNICA;mostrador
+502;JOSE FRANCISCO VEGA;123;employee;ELÉCTRICA;mostrador
+503;IRIOME QUESADA;123;employee;ELÉCTRICA;mostrador
+505;AITHAMY MEDINA SANTANA;123;employee;MECÁNICA;mostrador
+506;AYOSE LUZARDO ORIHUELA;123;employee;MECÁNICA;mostrador
+507;FRANCISCO RODRIGUEZ RIVER;123;employee;MECÁNICA;mostrador
+508;MANUEL;123;employee;LAS CHAFIRAS;mostrador
+510;GUILLERMO ROJAS;123;employee;ARINAGA;mostrador
+515;IBON;123;employee;MECÁNICA;mostrador
+520;AYOSE LUZARDO;123;employee;ELÉCTRICA;mostrador
+521;ROBERTO RODRIGUEZ;123;employee;ICOD;mostrador
+525;BENCHOMO;123;employee;LA GOMERA;mostrador
+526;AYTHAMI SUAREZ;123;employee;ARINAGA;mostrador
+527;VICTOR;123;employee;FUERTEVENTURA;mostrador
+528;ROBERTO;123;employee;EL PASO;mostrador
+529;VIANNEY;123;employee;BREÑA ALTA;mostrador
+53;JOSE MANUEL;123;employee;LOS MAJUELOS;mostrador
+530;GREGORIO;123;employee;BREÑA ALTA;mostrador
+531;YOZE MONZON;123;employee;EL GORO;mostrador
+532;JUAN RAMIREZ;123;employee;EL GORO;mostrador
+533;VIANNEY;123;employee;EL PASO;mostrador
+534;EMILIO;123;employee;BREÑA ALTA;mostrador
+535;EMILIO;123;employee;EL PASO;mostrador
+536;ADAY MENDEZ;123;employee;LA GOMERA;mostrador
+537;DAVID ESCUELA;123;employee;LOS MAJUELOS;mostrador
+538;JORGE LUIS CASTRO;123;employee;LOS MAJUELOS;mostrador
+539;AYOZE;123;employee;FUERTEVENTURA;mostrador
+54;JOSE FRAN;123;employee;LOS MAJUELOS;mostrador
+540;ARMICHE CEJAS;123;employee;ARINAGA;mostrador
+541;ABIAN GONZALEZ;123;employee;BREÑA ALTA;mostrador
+542;LUIS LACOMBA;123;employee;LAS CHAFIRAS;mostrador
+543;VICTOR RAMIREZ;123;employee;FUERTEVENTURA;mostrador
+544;RUBEN CONRADO;123;employee;LOS MAJUELOS;mostrador
+545;CRISTIAN BOLAÑOS;123;employee;EL GORO;mostrador
+546;RAYCO DAVID COPIA;123;employee;ARINAGA;mostrador
+547;YOLI;123;employee;GÁLDAR;mostrador
+548;JESUS RODRIGUEZ SANTANA;123;employee;MECÁNICA;mostrador
+549;AJONAI GODOY;123;employee;ELÉCTRICA;mostrador
+550;RUBEN;123;employee;LA GOMERA;mostrador
+551;JESUS ALBERTO;123;employee;EL PASO;mostrador
+552;JAVI;123;employee;LA OROTAVA;mostrador
+553;SERGIO;123;employee;LA OROTAVA;mostrador
+554;ROBERTO SUAREZ;123;employee;ARINAGA;mostrador
+555;SERGIO MIRANDA;123;employee;EL GORO;mostrador
+556;DOMINGO;123;employee;LOS MAJUELOS;mostrador
+557;MIGUEL OJEDA;123;employee;ARINAGA;mostrador
+558;CRISTIAN GOMEZ;123;employee;LAS CHAFIRAS;mostrador
+559;JAIME;123;employee;LOS MAJUELOS;mostrador
+560;JUAN MIGUEL GARCIA;123;employee;EL PASO;mostrador
+561;IVES;123;employee;LOS MAJUELOS;mostrador
+563;CARLOS;123;employee;ELÉCTRICA;mostrador
+564;FRANCISCO;123;employee;LOS MAJUELOS;mostrador
+565;RAFAEL BAEZ;123;employee;LOS MAJUELOS;mostrador
+566;DANIEL CHINEA;123;employee;LOS MAJUELOS;mostrador
+567;GONZALO MOLINA;123;employee;LOS MAJUELOS;mostrador
+568;ANTONIO;123;employee;MECÁNICA;mostrador
+569;MATIAS CALLES;123;employee;ELÉCTRICA;mostrador
+57;RUBEN;123;employee;ARINAGA;mostrador
+570;DAVID ARMAS;123;employee;ELÉCTRICA;mostrador
+571;MANUEL ANGEL MONZON;123;employee;MECÁNICA;mostrador
+572;AYOSE;123;employee;ELÉCTRICA;mostrador
+573;ISRAEL;123;employee;MECÁNICA;mostrador
+574;IGNACIO;123;employee;FUERTEVENTURA;mostrador
+575;ROBERTO JESÚS AVERO;123;employee;MECÁNICA;mostrador
+576;MARCOS CAMPOS DIAZ;123;employee;ELÉCTRICA;mostrador
+577;VICTOR CAMPOS;123;employee;FUERTEVENTURA;mostrador
+58;ALFONSO;123;employee;LOS MAJUELOS;mostrador
+580;IRIOME;123;employee;FUERTEVENTURA;mostrador
+581;JUANFRA;123;employee;ARINAGA;mostrador
+582;CHRISTIAN;123;employee;FUERTEVENTURA;mostrador
+583;ARIEL;123;employee;FUERTEVENTURA;mostrador
+584;RUYMAN;123;employee;LA GOMERA;mostrador
+585;CARLOS DE LA NUEZ;123;employee;MECÁNICA;mostrador
+586;LIVER;123;employee;FUERTEVENTURA;mostrador
+587;SILVIA;123;employee;ELÉCTRICA;mostrador
+588;BORJA GARCÍA;123;employee;EL GORO;mostrador
+589;ADAY;123;employee;EL GORO;mostrador
+590;NAREME;123;employee;ARINAGA;mostrador
+591;BORJA;123;employee;ARINAGA;mostrador
+592;XARACH;123;employee;EL PASO;mostrador
+593;DANIEL;123;employee;BREÑA ALTA;mostrador
+594;OCTAVIO HUERTAS;123;employee;ARINAGA;mostrador
+595;JOSE CARLOS;123;employee;MECÁNICA;mostrador
+596;RAMSES;123;employee;FUERTEVENTURA;mostrador
+597;DAVID ARMAS;123;employee;MECÁNICA;mostrador
+598;GUANYXEMAR;123;employee;FUERTEVENTURA;mostrador
+599;NICOLAS HERRERA;123;employee;FUERTEVENTURA;mostrador
+600;MARCOS;123;employee;MECÁNICA;mostrador
+601;JOSE CABRERA GONZALEZ;123;employee;LOS MAJUELOS;mostrador
+602;CARLOS DE LA NUEZ;123;employee;ELÉCTRICA;mostrador
+603;ROBERTO;123;employee;FUERTEVENTURA;mostrador
+604;IGNACIO;123;employee;LOS MAJUELOS;mostrador
+605;ACOIDAN COPIA;123;employee;ARINAGA;mostrador
+606;JUAN;123;employee;FUERTEVENTURA;mostrador
+607;MANUEL;123;employee;LOS MAJUELOS;mostrador
+608;ANGELES;123;employee;FUERTEVENTURA;mostrador
+609;ZENBENZUI;123;employee;EL PASO;mostrador
+61;BRUNO;123;employee;ARINAGA;mostrador
+610;ABIAN;123;employee;EL PASO;mostrador
+611;MICHEL;123;employee;ELÉCTRICA;mostrador
+612;AYOZE MANUEL PÉREZ;123;employee;MECÁNICA;mostrador
+613;DANIEL SANTANA;123;employee;ARINAGA;mostrador
+614;AYOZE;123;employee;LA OROTAVA;mostrador
+615;DARIO;123;employee;LOS MAJUELOS;mostrador
+616;PEDRO JUAN MORENO;123;employee;ELÉCTRICA;mostrador
+617;BECA LOGISTICA;123;employee;ELÉCTRICA;mostrador
+618;JUAN TOMAS;123;employee;LOS MAJUELOS;mostrador
+619;JOSE MANUEL GONZALEZ;123;employee;GÁLDAR;mostrador
+62;NEMESIO;123;employee;ARINAGA;mostrador
+620;TOMAS;123;employee;BREÑA ALTA;mostrador
+621;VICTOR LEON;123;employee;FUERTEVENTURA;mostrador
+622;KYLLIAN;123;employee;FUERTEVENTURA;mostrador
+623;ARIDANE PEREZ;123;employee;EL CUCHILLETE;mostrador
+624;RICARDO;123;employee;ELÉCTRICA;mostrador
+625;BERMUDEZ;123;employee;ARINAGA;mostrador
+626;MARCOS CAMPO;123;employee;MECÁNICA;mostrador
+627;MANUEL JESUS TORRES MORAL;123;employee;LOS MAJUELOS;mostrador
+628;ANESA;123;employee;EL GORO;mostrador
+629;PABLO DEL ROSARIO;123;employee;EL GORO;mostrador
+63;VILLALBA;123;employee;ARINAGA;mostrador
+630;OLIVER;123;employee;LAS CHAFIRAS;mostrador
+631;YERAY;123;employee;LAS CHAFIRAS;mostrador
+632;DAVID ABRANTE;123;employee;LOS MAJUELOS;mostrador
+633;JAVIER ALONSO;123;employee;LOS MAJUELOS;mostrador
+634;KYLLIAN;123;employee;EL CUCHILLETE;mostrador
+635;DAVID MOLINA;123;employee;EL CUCHILLETE;mostrador
+636;VICTOR LEON;123;employee;EL CUCHILLETE;mostrador
+637;JUAN DIEGO;123;employee;EL CUCHILLETE;mostrador
+638;VICTOR;123;employee;EL CUCHILLETE;mostrador
+639;RESPONSABLE;123;employee;EL CUCHILLETE;mostrador
+64;CESAR;123;employee;ARINAGA;mostrador
+640;ERIC DARIAS;123;employee;LA GOMERA;mostrador
+641;AMAIA;123;employee;EL CUCHILLETE;mostrador
+642;DEDY;123;employee;FUERTEVENTURA;mostrador
+643;JOSE RESPONSABLE;123;employee;EL CUCHILLETE;mostrador
+645;ANGEL RODRIGUEZ SUAREZ;123;employee;ELÉCTRICA;mostrador
+646;GABRIEL;123;employee;EL CUCHILLETE;mostrador
+647;CRISTIAN;123;employee;EL CUCHILLETE;mostrador
+648;JUAN DIEGO PEREZ;123;employee;EL CUCHILLETE;mostrador
+649;TERESA PARCERO;123;employee;EL CUCHILLETE;mostrador
+65;JAIME;123;employee;ARINAGA;mostrador
+650;CRISTIAN GARCIA;123;employee;FUERTEVENTURA;mostrador
+651;BRIAN;123;employee;LOS MAJUELOS;mostrador
+652;JOSUE RODRIGUEZ;123;employee;LOS MAJUELOS;mostrador
+653;DIEGO PADRON;123;employee;LA GOMERA;mostrador
+654;ANGEL RODRIGUEZ;123;employee;MECÁNICA;mostrador
+655;MAXIMILIANO;123;employee;LOS MAJUELOS;mostrador
+656;ALEXANDER;123;employee;EL PASO;mostrador
+657;GONZALO MACHIN;123;employee;ARINAGA;mostrador
+658;DIEPA;123;employee;GÁLDAR;mostrador
+659;IVAN HERRERA;123;employee;LAS CHAFIRAS;mostrador
+66;RAUL;123;employee;ARINAGA;mostrador
+660;AINHOA GARCIA;123;employee;FUERTEVENTURA;mostrador
+661;JUAN SANTIAGO;123;employee;FUERTEVENTURA;mostrador
+662;WILMER ESTEBEN ARROYO;123;employee;EL CUCHILLETE;mostrador
+663;GASPAR ALONSO;123;employee;ICOD;mostrador
+664;EDUARDO;123;employee;LOS MAJUELOS;mostrador
+665;ALEXANDER;123;employee;LOS MAJUELOS;mostrador
+666;ROBERTO;123;employee;LOS MAJUELOS;mostrador
+667;RAYCO RAMOS;123;employee;LOS MAJUELOS;mostrador
+668;IGNACIO;123;employee;EL PASO;mostrador
+669;ALBERTO RODRIGUEZ;123;employee;LOS MAJUELOS;mostrador
+67;LORENZO;123;employee;ARINAGA;mostrador
+670;JUAN LUIS;123;employee;EL PASO;mostrador
+671;DANIEL SOTO;123;employee;MECÁNICA;mostrador
+672;MARIA PEREZ;123;employee;LOS MAJUELOS;mostrador
+673;ALEJANDRO GARCIA;123;employee;LAS CHAFIRAS;mostrador
+674;ALEJANDRO LUIS;123;employee;LAS CHAFIRAS;mostrador
+675;IKER GARCIA;123;employee;LAS CHAFIRAS;mostrador
+676;AINHOA ALVAREZ;123;employee;LAS CHAFIRAS;mostrador
+677;DAVID MASCAREÑO;123;employee;LAS CHAFIRAS;mostrador
+678;RAYCO;123;employee;LA GOMERA;mostrador
+679;EDER MENDOZA SOCAS;123;employee;LAS CHAFIRAS;mostrador
+68;CARDENES;123;employee;ARINAGA;mostrador
+680;RAIMON ARMAS;123;employee;FUERTEVENTURA;mostrador
+681;RICARDO PADRON;123;employee;LOS MAJUELOS;mostrador
+682;CARMELO;123;employee;ARINAGA;mostrador
+683;RUBEN VERA;123;employee;LOS MAJUELOS;mostrador
+684;JUDITH;123;employee;MECÁNICA;mostrador
+685;JORGE HERNANDEZ;123;employee;LA OROTAVA;mostrador
+686;MARIA;123;employee;ICOD;mostrador
+687;ALEXIS TORRES;123;employee;LOS MAJUELOS;mostrador
+688;ADRIAN FABELO;123;employee;MECÁNICA;mostrador
+689;RAUL PONFERRADA;123;employee;EL CUCHILLETE;mostrador
+690;JONATHAN CABRERA;123;employee;EL CUCHILLETE;mostrador
+691;CARLOS CORREA;123;employee;ICOD;mostrador
+693;ADAY BORDON;123;employee;FUERTEVENTURA;mostrador
+694;JAVIER;123;employee;GÁLDAR;mostrador
+695;LOLI;123;employee;EL CUCHILLETE;mostrador
+696;VICTOR(CC4);123;employee;ARINAGA;mostrador
+697;ALEJANDRO;123;employee;FUERTEVENTURA;mostrador
+699;MARIOLA;123;employee;MECÁNICA;mostrador
+70;MARCIAL;123;employee;ARINAGA;mostrador
+701;ALEJANDRO DIAZ;123;employee;EL CUCHILLETE;mostrador
+702;CARMELO GRACIA;123;employee;EL GORO;mostrador
+703;JONAS;123;employee;ICOD;mostrador
+704;KYLLIAN;123;employee;FUERTEVENTURA;mostrador
+705;CARLOS MARTINEZ;123;employee;ARINAGA;mostrador
+706;CRISTIAN SANTANA;123;employee;ARINAGA;mostrador
+707;SARAH;123;employee;BREÑA ALTA;mostrador
+708;ANGEL PINEDA;123;employee;LAS CHAFIRAS;mostrador
+709;ADAY MELIAN;123;employee;LAS CHAFIRAS;mostrador
+71;VICTOR;123;employee;ARINAGA;mostrador
+710;FACUNDO;123;employee;LAS CHAFIRAS;mostrador
+711;MARCO MIGUEL;123;employee;LAS CHAFIRAS;mostrador
+712;VICTOR GARCIA;123;employee;EL PASO;mostrador
+713;JORGE LUIS;123;employee;LA OROTAVA;mostrador
+714;OSCAR ANTONIO;123;employee;LOS MAJUELOS;mostrador
+715;JUAN CARLOS;123;employee;GÁLDAR;mostrador
+716;DANIEL;123;employee;EL CUCHILLETE;mostrador
+717;CEDRIC;123;employee;LOS MAJUELOS;mostrador
+718;CRISTIAN;123;employee;LOS MAJUELOS;mostrador
+719;RAÚL SANTANA;123;employee;EL GORO;mostrador
+72;MIGUEL;123;employee;ARINAGA;mostrador
+720;SAMUEL;123;employee;ELÉCTRICA;mostrador
+721;OCTAVIO;123;employee;ELÉCTRICA;mostrador
+722;JONAY PEREZ;123;employee;ICOD;mostrador
+723;CARMELO JAVIER;123;employee;ELÉCTRICA;mostrador
+724;VICTOR QUEVEDO;123;employee;MECÁNICA;mostrador
+725;EVELYN;123;employee;ARINAGA;mostrador
+726;MARIA DEL CARMEN MARTINEZ;123;employee;ELÉCTRICA;mostrador
+727;ALEXIS LOPEZ;123;employee;GÁLDAR;mostrador
+728;KEVIN NAVARRO SOCORRO;123;employee;ELÉCTRICA;mostrador
+73;JOSE ANTONIO;123;employee;ARINAGA;mostrador
+730;YOBANI;123;employee;EL PASO;mostrador
+731;ANGEL IVAN CASTELLANO;123;employee;GÁLDAR;mostrador
+732;JUAN FRANCISCO VALIDO;123;employee;ELÉCTRICA;mostrador
+733;NELSON JESUS SANTANA DIAZ;123;employee;EL GORO;mostrador
+734;LEONARDO RODRIGUEZ;123;employee;EL PASO;mostrador
+735;ALESSANDRO BRITO;123;employee;ARINAGA;mostrador
+736;GABRIEL IZQUIERDO;123;employee;LAS CHAFIRAS;mostrador
+737;CRISTHIAN ROMERO;123;employee;LAS CHAFIRAS;mostrador
+738;SAMUEL CURBELO;123;employee;LAS CHAFIRAS;mostrador
+739;ANGEL PADILLA;123;employee;LAS CHAFIRAS;mostrador
+740;JOSE GONZALEZ ALFONSO;123;employee;LAS CHAFIRAS;mostrador
+741;RUBEN PALENZUELA;123;employee;LAS CHAFIRAS;mostrador
+742;FLAVIO MARTIN;123;employee;EL PASO;mostrador
+743;RAUL PONFERRADA;123;employee;FUERTEVENTURA;mostrador
+744;USUARIO;123;employee;FUERTEVENTURA;mostrador
+745;AYTHAMI SANTOS MARTIN;123;employee;LAS CHAFIRAS;mostrador
+746;CARMELO;123;employee;FUERTEVENTURA;mostrador
+747;JONAY RODRIGUEZ;123;employee;ELÉCTRICA;mostrador
+748;TAYDIA SANTANA;123;employee;MECÁNICA;mostrador
+749;ROBERTO MARTIN;123;employee;LAS CHAFIRAS;mostrador
+75;CARMELO;123;employee;LAS CHAFIRAS;mostrador
+750;GIOVANI GARCIA;123;employee;LOS MAJUELOS;mostrador
+751;GABRIEL TRUJILLO;123;employee;LOS MAJUELOS;mostrador
+752;KILLIAN DEL PINO;123;employee;LOS MAJUELOS;mostrador
+753;DIEGO JOSE;123;employee;LA GOMERA;mostrador
+754;SAMUEL;123;employee;LAS CHAFIRAS;mostrador
+755;ANGEL PINEDA;123;employee;LAS CHAFIRAS;mostrador
+756;JONAS TORRES;123;employee;MECÁNICA;mostrador
+757;ABIAN CARBALLO;123;employee;BREÑA ALTA;mostrador
+759;ERNESTO;123;employee;ELÉCTRICA;mostrador
+76;PEDRO;123;employee;LAS CHAFIRAS;mostrador
+760;GABRIEL TRUJILLO;123;employee;LA GOMERA;mostrador
+761;JONAY RODRIGUEZ VELAZQUEZ;123;employee;MECÁNICA;mostrador
+762;DAVID HERNADEZ;123;employee;ICOD;mostrador
+763;ERIC ALFREDO ROGER;123;employee;EL CUCHILLETE;mostrador
+764;ROBERTO PAEZ;123;employee;LOS MAJUELOS;mostrador
+767;ALBERTO GARCIA SOSA;123;employee;GÁLDAR;mostrador
+768;LUIS QUINTERO;123;employee;LAS CHAFIRAS;mostrador
+769;RAMÓN BELTRÁN;123;employee;LAS CHAFIRAS;mostrador
+77;ANGELO TOSI;123;employee;LAS CHAFIRAS;mostrador
+770;ALBERTO TORRES;123;employee;FUERTEVENTURA;mostrador
+771;IKER DIEZ;123;employee;FUERTEVENTURA;mostrador
+772;BORJA ESTEVEZ;123;employee;LOS MAJUELOS;mostrador
+773;MARCOS HERNANDEZ;123;employee;LOS MAJUELOS;mostrador
+774;VICTOR HERNANDEZ;123;employee;EL GORO;mostrador
+775;CARLOS CORREA;123;employee;MECÁNICA;mostrador
+776;JOSEBA;123;employee;LOS MAJUELOS;mostrador
+777;ISMAEL;123;employee;EL GORO;mostrador
+778;ELEAZAR FELIPE;123;employee;LOS MAJUELOS;mostrador
+779;JUAN ANGEL;123;employee;LOS MAJUELOS;mostrador
+78;FELIPE;123;employee;LAS CHAFIRAS;mostrador
+780;ISRAEL;123;employee;FUERTEVENTURA;mostrador
+781;RUBEN REYES;123;employee;LOS MAJUELOS;mostrador
+782;TOMAS JEREZ;123;employee;LA GOMERA;mostrador
+783;CRISTIAN VEGA;123;employee;FUERTEVENTURA;mostrador
+784;SAMUEL;123;employee;LA GOMERA;mostrador
+785;KILIAN MENDOZA;123;employee;GÁLDAR;mostrador
+786;EVA;123;employee;ARINAGA;mostrador
+787;JULIO FELIPE RODRIGUEZ;123;employee;LAS CHAFIRAS;mostrador
+788;CARLOS HERNANDEZ HDEZ;123;employee;MECÁNICA;mostrador
+789;YERENAY;123;employee;EL GORO;mostrador
+79;IVAN;123;employee;LAS CHAFIRAS;mostrador
+790;ALEJANDO;123;employee;EL GORO;mostrador
+791;MONTSE;123;employee;EL GORO;mostrador
+792;LUCAS;123;employee;LAS CHAFIRAS;mostrador
+793;DANIEL;123;employee;LAS CHAFIRAS;mostrador
+794;ARMANDO PRIETO;123;employee;LOS MAJUELOS;mostrador
+795;ABRAHAM PADRON;123;employee;LOS MAJUELOS;mostrador
+796;JAVIER SOTO;123;employee;EL CUCHILLETE;mostrador
+797;LUIS ROBERTO;123;employee;EL PASO;mostrador
+798;JAVIER BAEZ;123;employee;ARINAGA;mostrador
+799;NEMESIO;123;employee;GÁLDAR;mostrador
+8;PRUEBAS MOSTRADOR;123;employee;ELÉCTRICA;mostrador
+80;JESUS;123;employee;LAS CHAFIRAS;mostrador
+800;JULIO PEREZ;123;employee;LAS CHAFIRAS;mostrador
+802;RUYMAN;123;employee;GÁLDAR;mostrador
+803;OSCAR TAISMA;123;employee;FUERTEVENTURA;mostrador
+804;SUST OFICINA;123;employee;MECÁNICA;mostrador
+805;IBAN SALAZAR;123;employee;MECÁNICA;mostrador
+806;PABLO RAMOS;123;employee;FUERTEVENTURA;mostrador
+810;MOISES GARCIA;123;employee;ELÉCTRICA;mostrador
+811;OSCAR TAISMA;123;employee;EL CUCHILLETE;mostrador
+812;VICTOR IGLESIAS;123;employee;LOS MAJUELOS;mostrador
+813;DAYANA PONCE;123;employee;ARINAGA;mostrador
+814;ITTAI;123;employee;GÁLDAR;mostrador
+815;IBAN ALCARAZ;123;employee;LOS MAJUELOS;mostrador
+816;PABLO ARMAS;123;employee;FUERTEVENTURA;mostrador
+817;CRISTOFER REYES;123;employee;LAS CHAFIRAS;mostrador
+818;FRANCISCO DIAZ;123;employee;LOS MAJUELOS;mostrador
+819;AURELIO DELGADO;123;employee;LOS MAJUELOS;mostrador
+82;JUAN;123;employee;LAS CHAFIRAS;mostrador
+820;CRISTIAN GALINDO;123;employee;EL GORO;mostrador
+821;JAVIER CABRERA NARANJO;123;employee;MECÁNICA;mostrador
+822;PRACTICAS;123;employee;ARINAGA;mostrador
+824;JUAN MANUEL ALVITE;123;employee;EL CUCHILLETE;mostrador
+825;CARLOS EDUARDO;123;employee;EL PASO;mostrador
+826;JORGE MONTESDEOCA;123;employee;MECÁNICA;mostrador
+827;IVAN CALLEJO;123;employee;LA OROTAVA;mostrador
+828;JORGE HERNANDEZ;123;employee;LA OROTAVA;mostrador
+829;IVAN TAMSIR;123;employee;LA OROTAVA;mostrador
+83;VLADIMIR;123;employee;FUERTEVENTURA;mostrador
+830;KEVIN GONZALEZ;123;employee;ICOD;mostrador
+831;SERGIO CEDRES;123;employee;GÁLDAR;mostrador
+832;LUIS DUARTE;123;employee;LA GOMERA;mostrador
+833;AITOR JORGE MONTAÑES;123;employee;EL CUCHILLETE;mostrador
+835;GABRIEL DOMINGO PEÑA;123;employee;ELÉCTRICA;mostrador
+836;ADONAY PEREZ;123;employee;EL CUCHILLETE;mostrador
+837;RUYMAN DARIAS;123;employee;LAS CHAFIRAS;mostrador
+838;CRISTIAN MEDEROS;123;employee;ARINAGA;mostrador
+839;DANIEL PEREZ;123;employee;LOS MAJUELOS;mostrador
+84;NICOLAS;123;employee;FUERTEVENTURA;mostrador
+840;RUYMAN;123;employee;LOS MAJUELOS;mostrador
+841;RAQUEL;123;employee;ELÉCTRICA;mostrador
+842;LUIS ROBERTO;123;employee;BREÑA ALTA;mostrador
+843;IGOR;123;employee;EL PASO;mostrador
+844;ANGEL DAVID;123;employee;ELÉCTRICA;mostrador
+845;CARMEN;123;employee;LOS MAJUELOS;mostrador
+846;ANGEL DELGADO;123;employee;LOS MAJUELOS;mostrador
+847;HECTOR AMADOR;123;employee;LOS MAJUELOS;mostrador
+848;GIONAVI RODRIGUEZ;123;employee;LAS CHAFIRAS;mostrador
+849;AARON URBANO;123;employee;LAS CHAFIRAS;mostrador
+85;FRANCISCO;123;employee;FUERTEVENTURA;mostrador
+850;DANIEL ARREBOLA;123;employee;LAS CHAFIRAS;mostrador
+851;GILBERTO FUMERO;123;employee;LAS CHAFIRAS;mostrador
+852;LUIS VELOSO;123;employee;LAS CHAFIRAS;mostrador
+853;CRISTO LOPEZ;123;employee;ARINAGA;mostrador
+854;MIGUEL NEGRIN;123;employee;LOS MAJUELOS;mostrador
+856;RAUL TOLEDO CRUZ;123;employee;MECÁNICA;mostrador
+857;FRANCISCO MARISCAL;123;employee;EL CUCHILLETE;mostrador
+858;JOSE GONZALEZ;123;employee;GÁLDAR;mostrador
+859;JACOB TACORONTE;123;employee;BREÑA ALTA;mostrador
+86;TERE;123;employee;FUERTEVENTURA;mostrador
+860;CLODOVALDO BOLAÑOS;123;employee;ELÉCTRICA;mostrador
+861;AYTHAMI MEDINA;123;employee;ELÉCTRICA;mostrador
+862;ANTONIO RAMOS;123;employee;ELÉCTRICA;mostrador
+863;CRISTO DAVID;123;employee;LA OROTAVA;mostrador
+864;ADRIAN MORALES;123;employee;LA OROTAVA;mostrador
+865;JOSE CARLOS JIMENEZ LOPEZ;123;employee;ELÉCTRICA;mostrador
+866;DARIO RODRIGUEZ;123;employee;LOS MAJUELOS;mostrador
+867;FRANKO MENDEZ;123;employee;LAS CHAFIRAS;mostrador
+868;YERIEL HERNADEZ;123;employee;EL CUCHILLETE;mostrador
+869;ANTONIO ALBERTO ALONSO;123;employee;ELÉCTRICA;mostrador
+87;IVAN;123;employee;ARINAGA;mostrador
+870;JOSE BARRIOS;123;employee;LOS MAJUELOS;mostrador
+871;OLIVER MARRERO RODRIGUEZ;123;employee;MECÁNICA;mostrador
+872;DAVID GOMEZ;123;employee;LAS CHAFIRAS;mostrador
+874;MIGUEL ANGEL DIAZ;123;employee;LOS MAJUELOS;mostrador
+875;JUAN JOSE PEINADO;123;employee;FUERTEVENTURA;mostrador
+876;ADRIAN PEREZ;123;employee;FUERTEVENTURA;mostrador
+877;LATINO GARCIDES;123;employee;FUERTEVENTURA;mostrador
+878;ISMAEL DIOS IGLESIAS;123;employee;EL CUCHILLETE;mostrador
+879;JOSE ANDERSON MORALES;123;employee;EL CUCHILLETE;mostrador
+88;ERASTO;123;employee;FUERTEVENTURA;mostrador
+880;BERNARDO MARTORRELL;123;employee;ARINAGA;mostrador
+881;CESAR MARTIN;123;employee;LOS MAJUELOS;mostrador
+882;MOISES INDUSTRIAL;123;employee;MECÁNICA;mostrador
+883;CRISTO LOPEZ;123;employee;ARINAGA;mostrador
+884;JOSE MIGUEL SANCHEZ;123;employee;GÁLDAR;mostrador
+885;SHANIA GIL;123;employee;GÁLDAR;mostrador
+888;PABLO ALFONSO RODRIGUEZ;123;employee;ELÉCTRICA;mostrador
+889;JOSE CARLOS JIMENEZ;123;employee;MECÁNICA;mostrador
+890;BRYAN SANTANA;123;employee;LOS MAJUELOS;mostrador
+891;RAYCO RAMOS;123;employee;LOS MAJUELOS;mostrador
+892;DANIEL ARREBOLA;123;employee;LAS CHAFIRAS;mostrador
+894;ABRAHAM DELGADO;123;employee;LAS CHAFIRAS;mostrador
+895;STEFANO FANTONI;123;employee;LAS CHAFIRAS;mostrador
+896;ADRIAN PINEDA;123;employee;LAS CHAFIRAS;mostrador
+897;DAVID FLORES;123;employee;GÁLDAR;mostrador
+898;KILIAN MENDOZA;123;employee;MECÁNICA;mostrador
+899;TEODORO MONZON;123;employee;MECÁNICA;mostrador
+9;KIKO;123;employee;LOS MAJUELOS;mostrador
+90;IBAN;123;employee;ARINAGA;mostrador
+900;MANOLIN;123;employee;EL GORO;mostrador
+901;NELSON SANTANA;123;employee;ARINAGA;mostrador
+902;PABLO DARIAS;123;employee;LOS MAJUELOS;mostrador
+903;JOSE RODRIGUEZ;123;employee;LOS MAJUELOS;mostrador
+904;LOURDES GARCIA;123;employee;LAS CHAFIRAS;mostrador
+905;ADONEY BRITO;123;employee;LAS CHAFIRAS;mostrador
+906;ADAY;123;employee;EL GORO;mostrador
+907;DAVID SUAREZ;123;employee;ELÉCTRICA;mostrador
+908;EDUARDO MARTIN;123;employee;LOS MAJUELOS;mostrador
+910;LUIS DANY;123;employee;LA GOMERA;mostrador
+911;FERNANDO MAYADA HERNANDEZ;123;employee;ELÉCTRICA;mostrador
+912;KEVIN SANCHEZ;123;employee;LOS MAJUELOS;mostrador
+913;ALEJANDRO RAMIREZ;123;employee;MECÁNICA;mostrador
+914;ADAY YÁNEZ;123;employee;EL GORO;mostrador
+915;PABLO REYES;123;employee;MECÁNICA;mostrador
+916;DANIEL MEDINA;123;employee;EL PASO;mostrador
+917;KILIAM;123;employee;FUERTEVENTURA;mostrador
+918;EDU ALAYON;123;employee;FUERTEVENTURA;mostrador
+919;LUIS ESTEBAN;123;employee;LAS CHAFIRAS;mostrador
+92;GERARDO;123;employee;MECÁNICA;mostrador
+920;KEVIN GONZALEZ;123;employee;LOS MAJUELOS;mostrador
+921;BENEHARO SANTANA;123;employee;ELÉCTRICA;mostrador
+922;RAUL CUBA;123;employee;GÁLDAR;mostrador
+924;FRANCISCO VIERA;123;employee;ARINAGA;mostrador
+925;YOEL GONZALEZ;123;employee;LOS MAJUELOS;mostrador
+928;DANI RODRIGUEZ;123;employee;LA GOMERA;mostrador
+929;SAÚL SINSO;123;employee;EL GORO;mostrador
+93;JONATHAN;123;employee;EL PASO;mostrador
+930;ADA GORDILLO;123;employee;EL GORO;mostrador
+931;OSCAR MANUEL;123;employee;LOS MAJUELOS;mostrador
+932;ANGEL IVAN;123;employee;LOS MAJUELOS;mostrador
+933;NIEVES RODRIGUEZ;123;employee;EL PASO;mostrador
+934;NIEVES RODRIGUEZ;123;employee;BREÑA ALTA;mostrador
+935;CARMEN CASTELLANO;123;employee;MECÁNICA;mostrador
+936;ROBERTO RUIZ;123;employee;EL CUCHILLETE;mostrador
+937;JUAN DARIAS;123;employee;LA GOMERA;mostrador
+938;DAVID ARMAS;123;employee;LOS MAJUELOS;mostrador
+939;GUSTAVO BLANCO;123;employee;LOS MAJUELOS;mostrador
+94;FRANCISCO;123;employee;EL PASO;mostrador
+940;YOSSEF QUINTERO;123;employee;LOS MAJUELOS;mostrador
+941;JUAN ANGEL;123;employee;ICOD;mostrador
+942;AYOZE VALLADARES;123;employee;BREÑA ALTA;mostrador
+943;JOSUE DANIEL FRANQUIZ;123;employee;FUERTEVENTURA;mostrador
+944;FRANCISCO LOPEZ;123;employee;LOS MAJUELOS;mostrador
+945;ADOLFO LUGO;123;employee;LOS MAJUELOS;mostrador
+946;SAMUEL PADRON;123;employee;LOS MAJUELOS;mostrador
+947;CRISTIAN MANUEL MARTIN;123;employee;EL CUCHILLETE;mostrador
+948;ZEUS RAMIREZ;123;employee;EL GORO;mostrador
+949;JONATHAN JIMENEZ;123;employee;EL GORO;mostrador
+95;IVAN;123;employee;EL PASO;mostrador
+950;LAURA PEREZ;123;employee;ARINAGA;mostrador
+951;YELKO MELIAN PEREZ;123;employee;FUERTEVENTURA;mostrador
+952;AROL LUNA;123;employee;LOS MAJUELOS;mostrador
+953;JUAN JOSE SANTANA;123;employee;ELÉCTRICA;mostrador
+954;EDUARDO LOPEZ;123;employee;ICOD;mostrador
+955;RODRIGO MARTEL;123;employee;ARINAGA;mostrador
+956;CATAYSA HERNANDEZ;123;employee;LA GOMERA;mostrador
+957;DAVID ABRANTE;123;employee;LA OROTAVA;mostrador
+958;RAUL BONACHEA;123;employee;ARINAGA;mostrador
+959;ALEXIS MARTIN;123;employee;LOS MAJUELOS;mostrador
+96;VICTOR;123;employee;EL PASO;mostrador
+960;KEVIN MENDEZ;123;employee;LA GOMERA;mostrador
+961;JOSE ALBERTO;123;employee;LA GOMERA;mostrador
+962;LETICIA PERDOMO;123;employee;ELÉCTRICA;mostrador
+963;ISMAEL DIOS;123;employee;FUERTEVENTURA;mostrador
+964;GABRIEL CABRERA;123;employee;GÁLDAR;mostrador
+965;YURENA;123;employee;EL PASO;mostrador
+966;AITOR DOMINGUEZ SANTANA;123;employee;ELÉCTRICA;mostrador
+967;MIGUEL DIAZ;123;employee;LOS MAJUELOS;mostrador
+968;YOHELIN SERRANO;123;employee;LAS CHAFIRAS;mostrador
+969;LUIS JOEL DORTA;123;employee;LOS MAJUELOS;mostrador
+970;IGNACIO ARMAS;123;employee;LOS MAJUELOS;mostrador
+971;ESAU SÚAREZ;123;employee;EL GORO;mostrador
+972;DANIEL AFONSO;123;employee;EL CUCHILLETE;mostrador
+973;JASON MANUEL;123;employee;ARINAGA;mostrador
+974;VALENTIN REINA;123;employee;ELÉCTRICA;mostrador
+975;DAILOS PEÑA;123;employee;ELÉCTRICA;mostrador
+976;NYARA;123;employee;EL GORO;mostrador
+977;REYNALDO BELLO;123;employee;LOS MAJUELOS;mostrador
+978;EDUARDO ANDRES;123;employee;MECÁNICA;mostrador
+979;NEFTALI SANTANA;123;employee;ELÉCTRICA;mostrador
+98;ALBERTO;123;employee;EL PASO;mostrador
+980;DAILOS PEÑA;123;employee;MECÁNICA;mostrador
+984;VICTOR RUIZ;123;employee;EL CUCHILLETE;mostrador
+985;AIRAN RODRÍGUEZ;123;employee;EL GORO;mostrador
+986;CRISTIAN DAVID;123;employee;LAS CHAFIRAS;mostrador
+987;JOSE CABRERA;123;employee;LOS MAJUELOS;mostrador
+988;JOSE RUIZ;123;employee;LA GOMERA;mostrador
+989;JUAN ALVAREZ;123;employee;ELÉCTRICA;mostrador
+99;JOSE;123;employee;EL PASO;mostrador
+990;JOSE BERMUDEZ;123;employee;LA GOMERA;mostrador
+991;CRISTO MANUEL;123;employee;LOS MAJUELOS;mostrador
+992;EDUARDO PERDOMO;123;employee;LOS MAJUELOS;mostrador
+993;SHIRLEY MERIDA;123;employee;LOS MAJUELOS;mostrador
+994;ALAN;123;employee;LAS CHAFIRAS;mostrador
+995;ADRIAN HERNANDEZ;123;employee;LAS CHAFIRAS;mostrador
+996;CATHAYSA MEDINA;123;employee;ARINAGA;mostrador
+997;ADRIAN ACOSTA;123;employee;EL PASO;mostrador
+998;ALBARO JOSE;123;employee;ARINAGA;mostrador

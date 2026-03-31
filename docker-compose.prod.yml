@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: turnos-db-prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-auteide}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-auteide_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-turnos_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - turnos-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    container_name: turnos-backend-prod
+    restart: always
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      NODE_ENV: production
+      PORT: 3000
+    depends_on:
+      - db
+    networks:
+      - turnos-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: turnos-frontend-prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./README_TECH.md:/usr/share/nginx/html/README_TECH.md:ro
+      - ./USER_MANUAL.md:/usr/share/nginx/html/USER_MANUAL.md:ro
+
+    depends_on:
+      - backend
+    networks:
+      - turnos-network
+
+networks:
+  turnos-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

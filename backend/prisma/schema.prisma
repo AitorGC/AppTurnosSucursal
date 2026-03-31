@@ -1,0 +1,259 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 Int                @id @default(autoincrement())
+  employeeNumber     Int                @unique @default(autoincrement())
+  name               String
+  password           String
+  role               String             @default("employee")
+  branchId           Int
+  zoneId             Int
+  isActive           Boolean            @default(true)
+  mustChangePassword Boolean            @default(true)
+  avatarUrl          String?
+  birthDate          DateTime?
+  showBirthday       Boolean            @default(true)
+  themePreference    String             @default("system")
+  notificationPrefs  Json?
+  announcementReads  AnnouncementRead[]
+  announcements      Announcement[]
+  auditLogs          AuditLog[]
+  comments           Comment[]
+  notifications      Notification[]
+  shiftRequests      ShiftRequest[]     @relation("UserRequests")
+  peerRequests       ShiftRequest[]     @relation("PeerRequests")
+  shifts             Shift[]
+  vacationAdjustments           VacationAdjustment[] @relation("UserAdjustments")
+  authorizedVacationAdjustments VacationAdjustment[] @relation("AuthorizedAdjustments")
+  branch             Branch             @relation(fields: [branchId], references: [id])
+  zone               Zone               @relation(fields: [zoneId, branchId], references: [id, branchId])
+  managedBranches    Branch[]           @relation("ManagerToBranch")
+
+  @@map("users")
+}
+
+model Branch {
+  id            Int            @id @default(autoincrement())
+  name          String
+  announcements Announcement[]
+  users         User[]
+  zones         Zone[]
+  subZones      SubZone[]
+  managers      User[]         @relation("ManagerToBranch")
+
+  @@map("branches")
+}
+
+model Zone {
+  id            Int            @id @default(autoincrement())
+  name          String
+  branchId      Int
+  definitionId  Int?
+  shiftRequests ShiftRequest[]
+  shifts        Shift[]
+  users         User[]
+  branch        Branch         @relation(fields: [branchId], references: [id])
+  definition    ZoneDefinition? @relation(fields: [definitionId], references: [id])
+
+  @@unique([id, branchId])
+  @@map("zones")
+}
+
+model ZoneDefinition {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  zones     Zone[]
+  subZones  SubZone[]
+
+  @@map("zone_definitions")
+}
+
+model SubZone {
+  id           Int            @id @default(autoincrement())
+  name         String
+  definitionId Int
+  branchId     Int?
+  definition   ZoneDefinition @relation(fields: [definitionId], references: [id])
+  branch       Branch?        @relation(fields: [branchId], references: [id])
+
+  @@unique([name, definitionId, branchId])
+  @@map("subzones")
+}
+
+model Shift {
+  id         Int       @id @default(autoincrement())
+  userId     Int
+  zoneId     Int
+  startDate  DateTime
+  endDate    DateTime
+  createdAt  DateTime  @default(now())
+  isOvertime Boolean   @default(false)
+  type       ShiftType @default(WORK)
+  branchId   Int
+  subZone    String?
+  user           User           @relation(fields: [userId], references: [id])
+  zone           Zone           @relation(fields: [zoneId, branchId], references: [id, branchId])
+  requestsA      ShiftRequest[] @relation("ShiftA")
+  requestsB      ShiftRequest[] @relation("ShiftB")
+
+  @@map("shifts")
+}
+
+model ShiftRequest {
+  id             Int       @id @default(autoincrement())
+  userId         Int
+  zoneId         Int
+  type           ShiftType
+  startDate      DateTime
+  endDate        DateTime
+  status         String    @default("PENDING")
+  userReason     String?
+  managerComment String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  branchId       Int
+  subZone        String?
+  shiftAId       Int?
+  shiftBId       Int?
+  peerId         Int?
+  peerAccepted   Boolean   @default(false)
+  user           User      @relation("UserRequests", fields: [userId], references: [id])
+  peer           User?     @relation("PeerRequests", fields: [peerId], references: [id])
+  zone           Zone      @relation(fields: [zoneId, branchId], references: [id, branchId])
+  shiftA         Shift?    @relation("ShiftA", fields: [shiftAId], references: [id])
+  shiftB         Shift?    @relation("ShiftB", fields: [shiftBId], references: [id])
+
+  @@map("shift_requests")
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}
+
+model Announcement {
+  id            Int                @id @default(autoincrement())
+  title         String
+  content       String
+  createdAt     DateTime           @default(now())
+  authorId      Int
+  branchId      Int
+  priority      Boolean            @default(false)
+  expiresAt     DateTime?
+  allowComments Boolean            @default(true)
+  type          AnnouncementType   @default(GENERAL)
+  reads         AnnouncementRead[]
+  author        User               @relation(fields: [authorId], references: [id])
+  branch        Branch             @relation(fields: [branchId], references: [id])
+  comments      Comment[]
+
+  @@map("announcements")
+}
+
+model Comment {
+  id             Int          @id @default(autoincrement())
+  content        String
+  createdAt      DateTime     @default(now())
+  announcementId Int
+  userId         Int
+  announcement   Announcement @relation(fields: [announcementId], references: [id])
+  user           User         @relation(fields: [userId], references: [id])
+
+  @@map("comments")
+}
+
+model VacationAdjustment {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  authorizedById Int
+  days           Float
+  reason         String
+  year           Int
+  createdAt      DateTime @default(now())
+  user           User     @relation("UserAdjustments", fields: [userId], references: [id])
+  authorizedBy   User     @relation("AuthorizedAdjustments", fields: [authorizedById], references: [id])
+
+  @@map("vacation_adjustments")
+}
+
+model AnnouncementRead {
+  id             Int          @id @default(autoincrement())
+  announcementId Int
+  userId         Int
+  readAt         DateTime     @default(now())
+  announcement   Announcement @relation(fields: [announcementId], references: [id])
+  user           User         @relation(fields: [userId], references: [id])
+
+  @@unique([announcementId, userId])
+  @@map("announcement_reads")
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  action    String
+  details   Json
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
+
+model GlobalNotice {
+  id        Int              @id @default(autoincrement())
+  title     String
+  message   String
+  type      GlobalNoticeType @default(INFO)
+  isActive  Boolean          @default(true)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@map("global_notices")
+}
+
+enum ShiftType {
+  WORK
+  VACATION
+  OFF
+  MEDICAL
+  SICK_LEAVE
+  SWAP
+}
+
+enum AnnouncementType {
+  GENERAL
+  SHIFT_CHANGE
+  IMPORTANT
+  BIRTHDAY
+}
+
+
+enum GlobalNoticeType {
+  INFO
+  URGENT
+  CHANGELOG
+}
+
+model RolePermission {
+  id          Int      @id @default(autoincrement())
+  role        String   @unique
+  permissions Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("role_permissions")
+}

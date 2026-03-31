@@ -1,0 +1,23 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Instalar dependencias necesarias para Prisma y Postgres
+RUN apk add --no-cache openssl postgresql-client
+
+COPY package*.json ./
+RUN npm install --omit=dev
+
+COPY . .
+
+# Generar el cliente de Prisma
+RUN npx prisma generate
+
+# Copiar el script de arranque y darle permisos
+COPY start.prod.sh /usr/local/bin/start.prod.sh
+RUN chmod +x /usr/local/bin/start.prod.sh
+
+EXPOSE 3000
+
+# Usar el script de arranque
+CMD ["/usr/local/bin/start.prod.sh"]
