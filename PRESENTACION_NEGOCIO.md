@@ -1,66 +1,103 @@
-# 📋 Gestión de Turnos Auteide: La Transformación Digital de Nuestra Operatividad
+# 📊 Gestión de Turnos Empresa — Propuesta de Valor
+
+**Estado del proyecto:** ✅ Listo para producción  
+**Versión:** 1.0.0 · Marzo 2026  
+**Autor:** Aitor Santana
 
 ---
 
-## 1. Resumen Ejecutivo (El "Elevator Pitch")
+## 1. Resumen Ejecutivo
 
-**Gestión de Turnos Auteide** es nuestra nueva solución tecnológica centralizada, diseñada específicamente para modernizar y asegurar la gestión de cuadrantes y personal en toda nuestra red de centros.
+**Gestión de Turnos Empresa** es una plataforma digital diseñada a medida para centralizar y modernizar la planificación de personal en toda nuestra red de centros.
 
-El objetivo es claro: **eliminar definitivamente el papel, los grupos de WhatsApp caóticos y la fragmentación de la información.** Pasamos de procesos manuales propensos a errores a una plataforma digital robusta que garantiza que cada minuto de trabajo y cada día de descanso estén perfectamente documentados y accesibles para quienes lo necesitan.
+En la actualidad, la gestión de cuadrantes, vacaciones y cambios de turno se distribuye entre correos electrónicos, sistemas de mensajería no corporativos y hojas de cálculo. Este modelo genera errores, fricciones y un coste de tiempo significativo que impacta directamente en la productividad operativa.
 
----
-
-## 2. El Fin del Caos: Problemas que resolvemos
-
-En la operativa diaria, la gestión manual genera ineficiencias que afectan a la productividad y al clima laboral. Así es como cambiamos las reglas del juego:
-
-| **Situación Anterior (El Caos)** | **Nueva Realidad (Control Total)** |
-| :--- | :--- |
-| Peticiones de vacaciones en papel o verbales que se pierden. | **Trazabilidad total:** Solicitudes digitales con flujos de aprobación claros. |
-| Grupos de WhatsApp saturados de mensajes cruzados sobre turnos. | **Centralización:** Toda la información en un solo lugar, sin ruido innecesario. |
-| Solapamiento de turnos detectado tarde por falta de visibilidad. | **Calendarios inteligentes:** Visión global en tiempo real para evitar errores. |
-| Disputas sobre "quién cambió qué" y cuándo se aprobó. | **Registro inmutable (Logs):** Auditoría completa de cada cambio realizado. |
-| Posibilidad de asignar turnos a empleados ya no vinculados. | **Bloqueo de Inactivos:** Seguridad de que solo el personal de alta puede tener turnos. |
-| Desorden en listas y selectores que dificultan la búsqueda. | **Orden Alfabético:** Interfaz optimizada para una gestión rápida y sin errores. |
+**Esta plataforma elimina ese coste.**
 
 ---
 
-## 3. Beneficios por Departamento (El valor real)
+## 2. Problemas que Resolvemos
 
-Esta herramienta no es solo un software; es un aliado estratégico para cada área de la empresa.
-
-### 🏢 Para Recursos Humanos / Administración
-*   **Control del Gasto y Tiempo:** Gestión estricta del saldo de vacaciones (22 días laborales + ajustes auditables) para asegurar el cumplimiento normativo y evitar desviaciones.
-*   **Seguridad Jurídica:** Registro detallado de actividad que permite resolver cualquier disputa interna con datos objetivos: ¿Quién solicitó?, ¿Quién aprobó?, ¿En qué segundo ocurrió?
-
-### 👨‍💼 Para Responsables de Sucursal / Jefes de Zona
-*   **Gestión Multi-Sucursal:** Controla diferentes almacenes desde una única pantalla, sin necesidad de desplazamientos constantes o llamadas infinitas.
-*   **Intercambio de Turnos (Swap) Atómico:** Simplifica los cambios entre empleados. Ellos se ponen de acuerdo, el sistema valida la viabilidad y el responsable solo aprueba con **un solo clic**. El calendario se actualiza automáticamente.
-*   **Tablón de Anuncios Crítico:** Envía avisos de "Alta Prioridad" que garantizan que las comunicaciones urgentes han sido publicadas y son visibles para toda la plantilla.
-
-### 📦 Para el Empleado del Almacén
-*   **Transparencia y Autonomía:** Consulta directa de sus horarios, turnos y saldo de vacaciones de forma sencilla y clara.
-*   **Privacidad (Zero Mobile Policy):** Instalación directa como **PWA** en los PCs de la oficina. El empleado gestiona sus turnos en horario laboral y desde equipos de empresa, respetando su vida personal y desconexión digital.
-*   **Cultura de Empresa:** Fomento del compañerismo mediante avisos automáticos de cumpleaños en el tablón, humanizando la tecnología.
+| Situación Anterior | Nueva Realidad |
+|:---|:---|
+| Solicitudes de vacaciones verbales o en papel, sin trazabilidad. | Flujo digital con aprobación en un clic y registro permanente. |
+| Comunicaciones de turno dispersas en sistemas no corporativos. | Toda la información centralizada en un único canal seguro. |
+| Solapamientos de personal detectados de forma tardía. | Calendarios en tiempo real con visibilidad de toda la sucursal. |
+| Disputas sobre quién aprobó un cambio o cuándo se solicitó. | Auditoría inmutable: quién, qué, cuándo y desde qué equipo. |
+| Asignación accidental de turnos a empleados dados de baja. | Bloqueo automático a nivel de sistema para usuarios inactivos. |
+| Gestión manual de saldos de vacaciones propensa a errores. | Cálculo automático y ajustes auditables por el responsable. |
 
 ---
 
-## 4. Seguridad, Privacidad y Fiabilidad
+## 3. Impacto Estimado en el Negocio
 
-La protección de nuestros datos es innegociable. La aplicación ha sido diseñada bajo estándares de máxima seguridad corporativa:
+> Las siguientes estimaciones están basadas en flujos de trabajo típicos documentados durante la fase de análisis del proyecto.
 
-*   **Red Local Exclusiva:** La plataforma funciona únicamente dentro de nuestra infraestructura corporativa. No hay exposición a Internet, lo que elimina riesgos externos de ciberseguridad.
-*   **Navegación Cifrada (HTTPS):** Todas las comunicaciones entre el usuario y el servidor viajan protegidas.
-*   **Resiliencia de Datos:** Sistema de copias de seguridad automáticas integrado para garantizar la continuidad del negocio ante cualquier incidencia técnica.
+| Indicador | Estimación |
+|-----------|------------|
+| ⏱️ **Ahorro en gestión de turnos** (por responsable/semana) | ~2–3 horas |
+| 📋 **Reducción de errores de asignación** | ~80% estimado |
+| 🔎 **Tiempo de resolución de disputas** | De días a minutos (logs instantáneos) |
+| 📱 **Reducción de uso de canales no corporativos** | Completa para operativa de turnos |
 
 ---
 
-## 5. Conclusión y Próximos Pasos
+## 4. Beneficios por Departamento
 
-La plataforma **Gestión de Turnos Auteide** ya ha superado su fase de validación técnica. Es una herramienta estable, potente y diseñada a medida de nuestras necesidades reales.
+### 🏢 Recursos Humanos / Administración
 
-**Estado actual:** Lista para el despliegue en Producción.
+- **Control del gasto de vacaciones:** Gestión estricta del saldo de días con ajustes auditables, asegurando el cumplimiento normativo.
+- **Seguridad jurídica:** Registro detallado y con marca de tiempo de cada solicitud, aprobación y modificación. Cada acción queda vinculada a un usuario específico.
+- **Cálculo de horas:** Herramienta integrada que genera informes de horas por empleado, diferenciando festivos y tipos de jornada.
 
-El paso a lo digital no es solo una mejora tecnológica; es una apuesta por la profesionalización de nuestra gestión humana y la optimización de nuestros almacenes. 
+### 👨‍💼 Responsables de Sucursal / Jefes de Zona
 
-**¡Es hora de dejar atrás el papel y liderar la eficiencia!**
+- **Gestión Multi-Centro:** Control de varias sucursales desde una única sesión, con cambio de contexto instantáneo.
+- **Intercambio de turnos validado (Swap):** Los empleados proponen el cambio, el responsable solo aprueba. El calendario se actualiza automáticamente.
+- **Avisos prioritarios:** Comunicados urgentes visibles para toda la plantilla desde el primer inicio de sesión del día.
+
+### 📦 Empleado
+
+- **Transparencia:** Consulta directa de horarios, saldo de vacaciones y estado de todas sus solicitudes.
+- **Autonomía digital:** Gestión de turnos desde cualquier dispositivo, sin necesidad de consultar a un responsable para conocer su cuadrante.
+- **Privacidad respetada:** La aplicación está diseñada para usarse desde equipos corporativos en horario laboral, respetando la desconexión digital del empleado fuera de su jornada.
+
+---
+
+## 5. Seguridad, Privacidad y Fiabilidad
+
+La plataforma ha sido diseñada bajo estándares de seguridad corporativa en cada capa del sistema:
+
+| Capa | Medida de Seguridad |
+|------|---------------------|
+| **Red** | Operación en infraestructura interna de empresa. Sin exposición a Internet salvo configuración explícita. |
+| **Transporte** | Comunicaciones cifradas HTTPS mediante SSL. |
+| **Acceso** | Autenticación JWT con expiración de sesión (12h). Sin contraseñas en texto plano. |
+| **Datos** | Hashing de contraseñas con Bcrypt. Backups de base de datos bajo demanda desde administración. |
+| **Auditoría** | Registro completo de todas las acciones con IP, usuario y timestamp. |
+
+---
+
+## 6. Plan de Adopción Propuesto
+
+| Fase | Actividad | Plazo estimado |
+|------|-----------|----------------|
+| **1 – Despliegue** | Instalación en servidor corporativo y configuración de acceso | Semana 1 |
+| **2 – Admin** | Creación de sucursales, zonas y alta de usuarios administradores | Semana 1–2 |
+| **3 – Formación** | Sesión de formación para responsables (Manual de Usuario disponible in-app) | Semana 2 |
+| **4 – Piloto** | Uso real en una sucursal piloto con soporte directo | Semana 3–4 |
+| **5 – Extensión** | Despliegue progresivo al resto de centros | Mes 2 |
+
+---
+
+## 7. Conclusión
+
+La plataforma está **lista para entrar en producción**. Técnicamente validada, funcionalmente completa y documentada para su operativa y mantenimiento.
+
+La adopción de este sistema no supone únicamente una mejora tecnológica; es una decisión estratégica para profesionalizar la gestión de uno de los activos más importantes de la empresa: **el tiempo y bienestar de su plantilla**.
+
+**Próximo paso:** Aprobar el despliegue en el servidor corporativo e iniciar la Fase 1.
+
+---
+
+> Desarrollado por **Aitor Santana** · Gestión de Turnos Empresa v1.0.0

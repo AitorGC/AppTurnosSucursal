@@ -1,74 +1,119 @@
-# Release Notes: Gestión de Turnos Auteide v1.0.0 (RC)
+# Release Notes — v1.0.0
 
-**Proyecto:** Plataforma de Gestión de Turnos Auteide  
-**Versión:** 1.0.0 (Release Candidate)  
-**Desarrollador Principal:** Aitor Santana Ortega  
-**Fecha de Lanzamiento:** 24 de marzo de 2026
-
----
-
-## 1. Resumen Ejecutivo
-¡Felicidades! Se ha alcanzado oficialmente el hito de la **Versión 1.0 (Release Candidate)**. Esta entrega es el resultado de un esfuerzo individual de desarrollo que ha logrado transformar una necesidad operativa en una solución técnica robusta, escalable y moderna. 
-
-La plataforma no es solo un gestor de horarios; es una infraestructura integral diseñada para optimizar la comunicación, la transparencia y la eficiencia en todas las sucursales de Auteide. Haber completado este stack tecnológico (React, Node.js, PostgreSQL, Docker) como único desarrollador garantiza una coherencia técnica excepcional y una base de código limpia para futuras expansiones.
+**Proyecto:** Gestión de Turnos Empresa  
+**Versión:** `1.0.0` — Release Estable  
+**Desarrollador Principal:** Aitor Santana  
+**Fecha de Lanzamiento:** 24 de marzo de 2026  
+**Estado:** ✅ Producción
 
 ---
 
-## 2. Nuevas Funcionalidades (Full Feature Set)
+## Índice
 
-### 📊 Lógica de Negocio y Gestión de Cuadrantes
-- **Arquitectura Multi-Sucursal Dinámica:** Implementación de un selector global que permite a los responsables supervisar múltiples centros sin necesidad de cerrar sesión, con sincronización instantánea de datos.
-- **Sistema de Zonas y Subzonas (v1.0):** Jerarquía avanzada que permite definir zonas de trabajo (ej. Almacén) y subzonas específicas. 
-    - **Visibilidad Inteligente:** El administrador tiene visión total del mapa de subzonas del sistema, mientras que el personal operativo solo visualiza su ámbito local.
-- **Intercambios de Turnos (Atomic Swaps):** Proceso de seguridad en dos fases (Propuesta -> Aceptación del Compañero -> Validación del Responsable) que elimina errores de comunicación y asegura que el calendario siempre sea veraz.
-- **Filtro de Seguridad de Personal Inactivo:** Protección a nivel de base de datos y UI que impide asignar turnos a empleados inactivos, manteniendo la limpieza de los reportes.
-
-### 📢 Comunicación y Automatización
-- **Tablón de Anuncios Pro:** Soporte para avisos prioritarios y categorías visuales.
-- **Gestión Automatizada de Cumpleaños:** Los anuncios festivos se generan y archivan automáticamente tras 24 horas, manteniendo el tablón organizado sin intervención manual.
-- **Avisos Globales (Modales Críticos):** Capacidad de lanzar notificaciones de lectura obligatoria para toda la plantilla al iniciar sesión.
+- [Resumen](#resumen)
+- [Nuevas Funcionalidades](#nuevas-funcionalidades)
+- [Seguridad y Rendimiento](#seguridad-y-rendimiento)
+- [Experiencia de Usuario](#experiencia-de-usuario)
+- [Pipeline de Despliegue](#pipeline-de-despliegue)
+- [Breaking Changes y Estado Inicial de Base de Datos](#breaking-changes-y-estado-inicial-de-base-de-datos)
+- [Known Issues](#known-issues)
+- [Historial de Versiones](#historial-de-versiones)
 
 ---
 
-## 3. Arquitectura, Seguridad y Rendimiento (Engineering Excellence)
+## Resumen
 
-### Seguridad de Datos (Hardening)
-- **Criptografía:** Uso de **Bcrypt** para el hashing de contraseñas, garantizando que incluso en caso de brecha física de la base de datos, la información sea ilegible.
-- **Autorización JWT:** Sesiones protegidas mediante **JSON Web Tokens**, permitiendo una comunicación segura y sin estado (stateless) entre el frontend y el backend.
-- **Registro de Auditoría (Audit Logs):** Trazabilidad total de acciones críticas. El sistema registra quién modificó un registro, qué cambió y desde qué dirección IP.
-
-### Rendimiento y Escalabilidad
-- **Base de Datos Relacional:** Diseño optimizado en **PostgreSQL** con relaciones indexadas para búsquedas instantáneas y protección contra Race Conditions mediante transacciones Prisma.
-- **Ordenación Nativa:** Lógica de backend que sirve todas las entidades (sucursales, zonas, usuarios) ordenadas alfabéticamente por defecto, mejorando la usabilidad administrativa.
-- **Optimización de Consultas:** Eliminación de cuellos de botella mediante la carga selectiva de datos (select/include) para reducir la latencia de red.
+v1.0.0 es la primera versión estable y completamente funcional de la plataforma de gestión de turnos. Incluye el stack completo de producción: gestión de cuadrantes multi-sucursal, sistema RBAC de 5 niveles, módulo de vacaciones con flujos de aprobación, auditoría completa e infraestructura dockerizada con SSL.
 
 ---
 
-## 4. Experiencia de Usuario (UI/UX Pixel-Perfect)
+## Nuevas Funcionalidades
 
-- **Enfoque Mobile-First (PWA):** Aplicación diseñada para ser utilizada en el "terreno" (almacén, mostrador) desde móviles, con capacidades de PWA para instalación directa.
-- **Estandarización Estética:** Unificación de bordes, sombras, gradientes y acentos corporativos siguiendo una guía de estilo Senior.
-- **Interfaz Fluida:** Implementación de **contenedores con scroll interno** y barras de desplazamiento personalizadas que permiten manejar grandes volúmenes de datos (logs, listas de usuarios) sin romper la estructura de la página.
-- **Localización Completa:** Interfaz, mensajes de error y documentación 100% en español, adaptada a la terminología interna de Auteide.
+### Gestión de Cuadrantes y Lógica de Negocio
 
----
+- **Arquitectura Multi-Sucursal:** Selector global que permite a los responsables supervisar múltiples centros desde una única sesión, con sincronización de datos en tiempo real.
+- **Sistema de Zonas y Subzonas:** Jerarquía avanzada con dos niveles: Zonas globales (disponibles en todas las sucursales) y Subzonas específicas por centro.
+  - Visibilidad inteligente: Admin tiene visión total; el resto del personal ve solo su ámbito.
+- **Intercambio Atómico de Turnos (Swap):** Flujo en dos fases (Propuesta → Aceptación del compañero → Aprobación del responsable) con validación de integridad para evitar colisiones de calendario.
+- **Filtro de Personal Inactivo:** Bloqueo a nivel de API y UI que impide asignar turnos a usuarios con `isActive: false`.
 
-## 5. Notas de Despliegue y Mantenimiento
+### Comunicación y Automatización
 
-La infraestructura está preparada para un despliegue "Zero Downtime" mediante Docker.
-
-### Pipeline de Despliegue:
-1. **Configuración:** Verificación de variables en `.env`.
-2. **Orquestación:** Lanzamiento mediante el orquestador de producción:
-   ```bash
-   docker compose -f docker-compose.prod.yml up -d --build
-   ```
-3. **Persistencia:** Mapeo de volúmenes para PostgreSQL y Nginx (certificados SSL incluídos).
-4. **Base de Datos:** Aplicación de migraciones mediante el modo seguro:
-   ```bash
-   npx prisma migrate deploy
-   ```
+- **Tablón de Anuncios:** Soporte para categorías `GENERAL`, `PRIORITY` y `BIRTHDAY` con indicadores visuales diferenciados.
+- **Anuncios de Cumpleaños Automáticos:** Creación y archivado automático mediante cron job (ejecutado a las 00:01 diariamente).
+- **Avisos Globales (Modales):** Comunicados de lectura obligatoria activables por el Admin, mostrados al iniciar sesión. Soporta tipos `INFO`, `WARNING` y `CRITICAL`.
+- **Expiración Automática de Solicitudes:** Las `ShiftRequest` en estado `PENDING` cuya fecha ha pasado se marcan como `EXPIRED` automáticamente (cron a las 00:00 diariamente).
 
 ---
 
-**Este hito v1.0 representa el lanzamiento de una herramienta profesional y robusta, construida íntegramente como un proyecto de ingeniería de autor.**
+## Seguridad y Rendimiento
+
+### Hardening de Seguridad
+
+- **Hashing de contraseñas:** Bcrypt (`saltRounds: 10`) para todos los passwords almacenados. Incluye migración suave en el momento del login para cuentas con contraseñas en texto plano heredadas.
+- **JWT:** Tokens firmados con `JWT_SECRET`, expiración en 12 horas. El backend valida la existencia y actividad del usuario en cada petición mediante `requirePermission`.
+- **CORS:** Lista de dominios permitidos configurable mediante `FRONTEND_URL` en `.env`. No se permiten orígenes no autorizados en entorno de producción.
+- **Protección de inicio en producción:** El proceso falla con `process.exit(1)` si `JWT_SECRET` no está definida, previniendo despliegues inseguros.
+- **Auditoría:** Registro en `AuditLog` con IP, acción, payload y timestamp para todas las operaciones críticas.
+
+### Rendimiento
+
+- **Consultas optimizadas:** Uso de `select` e `include` selectivos en Prisma para evitar el problema N+1 y reducir la carga de red.
+- **Ordenación nativa en backend:** Todas las entidades listadas (sucursales, zonas, usuarios) se devuelven ordenadas alfabéticamente por defecto.
+- **Protección contra Race Conditions:** Las operaciones de Swap usan transacciones Prisma para garantizar consistencia en escrituras concurrentes.
+
+---
+
+## Experiencia de Usuario
+
+- **PWA instalable:** Soporte completo de PWA con `manifest.json`, Service Worker y resolución de iconos para iOS y Android.
+- **Mobile-First:** Interfaz diseñada para la operativa de almacén desde dispositivos móviles. Contenedores con scroll interno para gestionar listas largas sin romper el layout.
+- **Sistema de temas:** Preferencia de tema claro/oscuro persistida por usuario en base de datos.
+- **Interfaz 100% en español:** Mensajes de error, validaciones y documentación completamente localizados.
+
+---
+
+## Pipeline de Despliegue
+
+```
+1. Configurar .env  →  cp .env.example .env && nano .env
+2. Generar SSL      →  ./setup-https.sh
+3. Migrar BD        →  docker compose -f docker-compose.prod.yml run --rm backend npx prisma migrate deploy
+4. Levantar         →  docker compose -f docker-compose.prod.yml up -d --build
+5. Seed inicial     →  docker compose -f docker-compose.prod.yml exec backend node prisma/seed.js
+```
+
+---
+
+## Breaking Changes y Estado Inicial de Base de Datos
+
+> Esta es la versión inicial. No existen breaking changes frente a versiones anteriores.
+
+**Estado inicial de la base de datos tras el seed:**
+
+| Entidad | Estado |
+|---------|--------|
+| Roles (`RolePermission`) | Creados con permisos predefinidos para los 5 roles |
+| Sucursales | Sin datos — deben crearse desde el panel de Gestión |
+| Zonas y Subzonas | Sin datos — deben definirse tras crear las sucursales |
+| Usuario Admin | Creado por defecto con las credenciales del seed (`prisma/seed.js`) |
+
+> ⚠️ **Cambia la contraseña del usuario Admin inmediatamente tras el primer despliegue.**
+
+---
+
+## Known Issues
+
+| ID | Descripción | Impacto | Estado |
+|----|-------------|---------|--------|
+| KI-001 | En iOS Safari, la instalación como PWA puede requerir limpiar la caché del navegador si ya existe una versión anterior en pantalla de inicio. | Bajo | Pendiente de revisión en v1.1 |
+| KI-002 | El endpoint `/api/backup` genera el `pg_dump` en memoria; para bases de datos de gran tamaño (`>500MB`) puede causar un timeout de Nginx (60s). | Bajo | Pendiente. Workaround: ejecutar backup directamente por SSH. |
+| KI-003 | El filtro de fechas en la pantalla de Cálculo no valida si la fecha de fin es anterior a la de inicio, devolviendo un resultado vacío sin mensaje de error. | Bajo | Pendiente en v1.1 |
+
+---
+
+## Historial de Versiones
+
+| Versión | Fecha | Descripción |
+|---------|-------|-------------|
+| `1.0.0` | 24-03-2026 | Release estable inicial. Stack completo en producción. |
