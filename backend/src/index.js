@@ -1,6 +1,8 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const cron = require('node-cron');
 const { spawn } = require('child_process');
 const bcrypt = require('bcrypt');
@@ -9,12 +11,21 @@ const { createAuditLog } = require('./utils/audit');
 const PERMISSIONS = require('./constants/permissions');
 require('dotenv').config();
 
-if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
-    console.error('FATAL ERROR: JWT_SECRET must be defined in production environment.');
+// ── JWT Secret — mandatory in all environments ────────────────────────────────
+if (!process.env.JWT_SECRET) {
+    console.error('FATAL ERROR: JWT_SECRET environment variable must be defined.');
     process.exit(1);
 }
+const JWT_SECRET = process.env.JWT_SECRET;
 
-const JWT_SECRET = process.env.JWT_SECRET || 'auteide_dev_secret_2026';
+// ── Login Rate Limiter ─────────────────────────────────────────────────────────
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10,
+    message: { message: 'Demasiados intentos de inicio de sesión. Inténtalo de nuevo en 15 minutos.' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
 
 // Middleware: authenticateToken
 const authenticateToken = (req, res, next) => {
@@ -73,17 +84,21 @@ const port = process.env.PORT || 3000;
 
 const allowedOrigins = [
     process.env.FRONTEND_URL,
+    process.env.EXTRA_CORS_ORIGIN,
     'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://172.16.12.66',
-    'https://172.16.12.66'
+    'http://127.0.0.1:3000'
 ].filter(Boolean);
+
+app.use(helmet({
+    contentSecurityPolicy: false,  // Handled by Nginx for the frontend
+    crossOriginEmbedderPolicy: false
+}));
 
 app.use(cors({
     origin: (origin, callback) => {
-        // Permitir solicitudes sin origen (como Postman o apps móviles)
+        // Allow requests with no origin (same-origin requests, mobile apps, Postman in dev)
         if (!origin) return callback(null, true);
-        if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+        if (allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
             console.warn(`CORS blocked request from origin: ${origin}`);
@@ -203,7 +218,7 @@ app.get('/health', async (req, res) => {
 });
 
 // --- AUTH ---
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', loginLimiter, async (req, res) => {
     const { employeeNumber, password: plainPassword } = req.body;
 
     if (!employeeNumber || !plainPassword) {
@@ -286,18 +301,27 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-app.post('/api/users/:id/change-password', async (req, res) => {
+app.post('/api/users/:id/change-password', requirePermission(PERMISSIONS.USERS_CHANGE_PASSWORD), async (req, res) => {
     const { id } = req.params;
     const { newPassword } = req.body;
+    const targetId = parseInt(id);
+
+    // Only allow: changing own password, OR admin role
+    if (req.user.id !== targetId && req.user.role !== 'admin') {
+        return res.status(403).json({ message: 'No autorizado para cambiar la contraseña de otro usuario' });
+    }
 
     if (!newPassword) {
         return res.status(400).json({ message: 'Falta la nueva contraseña' });
     }
+    if (newPassword.length < 8) {
+        return res.status(400).json({ message: 'La contraseña debe tener al menos 8 caracteres' });
+    }
 
     try {
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        const hashedPassword = await bcrypt.hash(newPassword, 12);
         await prisma.user.update({
-            where: { id: parseInt(id) },
+            where: { id: targetId },
             data: {
                 password: hashedPassword,
                 mustChangePassword: false
@@ -310,16 +334,18 @@ app.post('/api/users/:id/change-password', async (req, res) => {
     }
 });
 
+
 // --- USERS CRUD ---
 
 // Listar usuarios
 app.get('/api/users', requirePermission(PERMISSIONS.USERS_VIEW), async (req, res) => {
-    const { userId, role } = req.query;
+    const userRole = req.user.role;
+    const userId   = req.user.id;
     try {
         let where = {};
-        if (role === 'responsable' && userId) {
+        if (userRole === 'responsable') {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(userId) },
+                where: { id: userId },
                 include: { managedBranches: true }
             });
             if (user) {
@@ -327,21 +353,19 @@ app.get('/api/users', requirePermission(PERMISSIONS.USERS_VIEW), async (req, res
                 branchIds.push(user.branchId);
                 where.branchId = { in: branchIds };
             }
-        } else if ((role === 'administracion' || role === 'employee' || role === 'jefe_departamento') && userId) {
-            const user = await prisma.user.findUnique({
-                where: { id: parseInt(userId) }
-            });
+        } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: userId } });
             if (user) {
                 where.branchId = user.branchId;
             }
         }
+        // admin sees all — no filter
 
         const users = await prisma.user.findMany({
             where,
             include: { branch: true, zone: true, managedBranches: true },
             orderBy: { employeeNumber: 'asc' }
         });
-        // Ocultar password
         const safeUsers = users.map(u => {
             const { password, ...rest } = u;
             return rest;
@@ -352,10 +376,10 @@ app.get('/api/users', requirePermission(PERMISSIONS.USERS_VIEW), async (req, res
     }
 });
 
+
 // Crear usuario
 app.post('/api/users', requirePermission(PERMISSIONS.USERS_CREATE), async (req, res) => {
     const { employeeNumber, name, password, role, branchId, zoneId, isActive } = req.body;
-    console.log('POST /api/users body:', req.body); // DEBUG
 
     try {
         const existing = await prisma.user.findUnique({
@@ -437,14 +461,12 @@ app.put('/api/users/:id', requirePermission(PERMISSIONS.USERS_EDIT), async (req,
             include: { managedBranches: true }
         });
 
-        // Audit Log
-        const actorId = req.body.adminId || null; // El actor debe enviarse desde el frontend
-        if (actorId) {
-            await createAuditLog(parseInt(actorId), 'Actualización de Usuario', {
+        // Audit Log — use authenticated actor from JWT
+        const actorId = req.user.id;
+        await createAuditLog(prisma, actorId, 'Actualización de Usuario', {
                 targetUserId: id,
-                changes: { name, role, branchId, zoneId, isActive, themePreference, showBirthday }
-            });
-        }
+            changes: { name, role, branchId, zoneId, isActive, themePreference, showBirthday }
+        });
 
         const { password: _, ...userWithoutPassword } = updatedUser;
         res.json(userWithoutPassword);
@@ -470,17 +492,18 @@ app.delete('/api/users/:id', requirePermission(PERMISSIONS.USERS_DELETE), async 
 // --- HELPERS (Branches/Zones) ---
 
 app.get('/api/branches', async (req, res) => {
-    const { userId, role } = req.query;
+    const userRole = req.user ? req.user.role : null;
+    const userId   = req.user ? req.user.id   : null;
     try {
-        if (role === 'admin') {
+        if (userRole === 'admin') {
             const branches = await prisma.branch.findMany({ 
                 include: { zones: { orderBy: { name: 'asc' } } },
                 orderBy: { name: 'asc' }
             });
             return res.json(branches);
-        } else if (role === 'responsable' && userId) {
+        } else if (userRole === 'responsable' && userId) {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(userId) },
+                where: { id: userId },
                 include: { 
                     managedBranches: { 
                         include: { zones: { orderBy: { name: 'asc' } } },
@@ -496,17 +519,16 @@ app.get('/api/branches', async (req, res) => {
             user.managedBranches.forEach(b => branchesMap.set(b.id, b));
             
             return res.json(Array.from(branchesMap.values()));
-        } else if ((role === 'administracion' || role === 'employee' || role === 'jefe_departamento') && userId) {
+        } else if ((userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') && userId) {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(userId) },
+                where: { id: userId },
                 include: { branch: { include: { zones: { orderBy: { name: 'asc' } } } } }
             });
             if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
             return res.json(user.branch ? [user.branch] : []);
         } else {
-            // Usuarios sin rol o sin ID (público) - quizá solo nombres de sucursales?
-            // Devolvemos todas pero sin zonas para proteger datos si no hay auth
-            const branches = await prisma.branch.findMany({ orderBy: { name: 'asc' } });
+            // Fallback: only return branch names without zones
+            const branches = await prisma.branch.findMany({ orderBy: { name: 'asc' }, select: { id: true, name: true } });
             res.json(branches);
         }
     } catch (err) {
@@ -514,19 +536,19 @@ app.get('/api/branches', async (req, res) => {
     }
 });
 
+
 // --- ZONES & SUBZONES MANAGEMENT ---
 
 // Listar definiciones de zona (ZoneDefinition)
 app.get('/api/zone-definitions', requirePermission(PERMISSIONS.ZONES_VIEW), async (req, res) => {
-    console.log('GET /api/zone-definitions');
     try {
-        const userRole = req.query.role;
-        const uId = req.query.userId;
+        const userRole = req.user.role;
+        const uId      = req.user.id;
         let branchFilter = {};
 
-        if (userRole !== 'admin' && uId) {
+        if (userRole !== 'admin') {
             const user = await prisma.user.findUnique({ 
-                where: { id: parseInt(uId) }, 
+                where: { id: uId }, 
                 include: { managedBranches: true } 
             });
             if (user) {
@@ -600,27 +622,24 @@ app.delete('/api/zone-definitions/:id', requirePermission(PERMISSIONS.ZONES_MANA
 // Listar subzonas
 app.get('/api/subzones', requirePermission(PERMISSIONS.ZONES_VIEW), async (req, res) => {
     const { definitionId, branchId } = req.query;
-    console.log(`GET /api/subzones?definitionId=${definitionId}&branchId=${branchId}`);
     try {
-        const userRole = req.query.role;
-        const uId = req.query.userId;
+        const userRole = req.user.role;
+        const uId      = req.user.id;
         let bId = branchId ? parseInt(branchId) : null;
 
-        if (uId) {
-            if (userRole === 'responsable') {
-                const user = await prisma.user.findUnique({ where: { id: parseInt(uId) }, include: { managedBranches: true } });
-                const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
-                if (bId && !allowed.includes(bId)) {
-                    return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
-                }
-                if (!bId) bId = { in: allowed };
-            } else if (userRole === 'administracion' || userRole === 'employee') {
-                const user = await prisma.user.findUnique({ where: { id: parseInt(uId) } });
-                if (bId && user.branchId !== bId) {
-                    return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
-                }
-                if (!bId) bId = user.branchId;
+        if (userRole === 'responsable') {
+            const user = await prisma.user.findUnique({ where: { id: uId }, include: { managedBranches: true } });
+            const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
+            if (bId && !allowed.includes(bId)) {
+                return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
             }
+            if (!bId) bId = { in: allowed };
+        } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: uId } });
+            if (bId && user.branchId !== bId) {
+                return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
+            }
+            if (!bId) bId = user.branchId;
         }
 
         const where = {};
@@ -630,8 +649,8 @@ app.get('/api/subzones', requirePermission(PERMISSIONS.ZONES_VIEW), async (req, 
                 { branchId: bId },
                 { branchId: null }
             ];
-        } else if (uId && (userRole === 'responsable' || userRole === 'administracion' || userRole === 'employee')) {
-             where.branchId = bId;
+        } else if (userRole === 'responsable' || userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            where.branchId = bId;
         }
         const subZones = await prisma.subZone.findMany({
             where,
@@ -643,6 +662,7 @@ app.get('/api/subzones', requirePermission(PERMISSIONS.ZONES_VIEW), async (req, 
         res.status(500).json({ message: err.message });
     }
 });
+
 
 // Crear subzona
 app.post('/api/subzones', requirePermission(PERMISSIONS.ZONES_MANAGE), async (req, res) => {
@@ -692,8 +712,11 @@ app.get('/api/global-notices', requirePermission(PERMISSIONS.GLOBAL_NOTICES_MANA
     }
 });
 
-// Obtener avisos activos para el usuario
+// Obtener avisos activos para el usuario — requiere autenticación
 app.get('/api/global-notices/active', async (req, res) => {
+    if (!req.user) {
+        return res.status(401).json({ message: 'Autenticación requerida' });
+    }
     try {
         const notices = await prisma.globalNotice.findMany({
             where: { isActive: true },
@@ -705,21 +728,15 @@ app.get('/api/global-notices/active', async (req, res) => {
     }
 });
 
+
 // Crear aviso (Admin)
 app.post('/api/global-notices', requirePermission(PERMISSIONS.GLOBAL_NOTICES_MANAGE), async (req, res) => {
-    const { title, message, type, adminId } = req.body;
+    const { title, message, type } = req.body;
     try {
         const notice = await prisma.globalNotice.create({
             data: { title, message, type: type || 'INFO' }
         });
-
-        if (adminId) {
-            await createAuditLog(parseInt(adminId), 'Creación de Comunicado Global', {
-                noticeId: notice.id,
-                title
-            });
-        }
-
+        await createAuditLog(prisma, req.user.id, 'Creación de Comunicado Global', { noticeId: notice.id, title });
         res.status(201).json(notice);
     } catch (err) {
         res.status(500).json({ message: 'Error al crear el comunicado' });
@@ -729,23 +746,17 @@ app.post('/api/global-notices', requirePermission(PERMISSIONS.GLOBAL_NOTICES_MAN
 // Actualizar/Toggle aviso (Admin)
 app.put('/api/global-notices/:id', requirePermission(PERMISSIONS.GLOBAL_NOTICES_MANAGE), async (req, res) => {
     const { id } = req.params;
-    const { title, message, type, isActive, adminId } = req.body;
+    const { title, message, type, isActive } = req.body;
     try {
         const current = await prisma.globalNotice.findUnique({ where: { id: parseInt(id) } });
         if (!current) return res.status(404).json({ message: 'Comunicado no encontrado' });
-
         const notice = await prisma.globalNotice.update({
             where: { id: parseInt(id) },
             data: { title, message, type, isActive }
         });
-
-        if (adminId) {
-            await createAuditLog(parseInt(adminId), 'Actualización de Comunicado Global', {
-                noticeId: notice.id,
-                changes: { title, type, isActive }
-            });
-        }
-
+        await createAuditLog(prisma, req.user.id, 'Actualización de Comunicado Global', {
+            noticeId: notice.id, changes: { title, type, isActive }
+        });
         res.json(notice);
     } catch (err) {
         res.status(500).json({ message: 'Error al actualizar el comunicado' });
@@ -755,25 +766,19 @@ app.put('/api/global-notices/:id', requirePermission(PERMISSIONS.GLOBAL_NOTICES_
 // Eliminar aviso (Admin)
 app.delete('/api/global-notices/:id', requirePermission(PERMISSIONS.GLOBAL_NOTICES_MANAGE), async (req, res) => {
     const { id } = req.params;
-    const { adminId } = req.query;
     try {
         const notice = await prisma.globalNotice.findUnique({ where: { id: parseInt(id) } });
         if (!notice) return res.status(404).json({ message: 'Comunicado no encontrado' });
-
         await prisma.globalNotice.delete({ where: { id: parseInt(id) } });
-
-        if (adminId) {
-            await createAuditLog(parseInt(adminId), 'Eliminación de Comunicado Global', {
-                noticeId: id,
-                title: notice.title
-            });
-        }
-
+        await createAuditLog(prisma, req.user.id, 'Eliminación de Comunicado Global', {
+            noticeId: id, title: notice.title
+        });
         res.json({ message: 'Comunicado eliminado' });
     } catch (err) {
         res.status(500).json({ message: 'Error al eliminar el comunicado' });
     }
 });
+
 
 // --- SHIFTS MODULE ---
 
@@ -794,20 +799,20 @@ app.get('/api/shifts', requirePermission(PERMISSIONS.SHIFTS_VIEW), async (req, r
         }
         if (branchId) {
             const bId = parseInt(branchId);
-            const userRole = req.query.role;
-            const userId = req.query.userId;
+            const userRole = req.user.role;
+            const userId   = req.user.id;
 
-            if (userRole === 'responsable' && userId) {
+            if (userRole === 'responsable') {
                 const user = await prisma.user.findUnique({
-                    where: { id: parseInt(userId) },
+                    where: { id: userId },
                     include: { managedBranches: true }
                 });
                 const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
                 if (!allowed.includes(bId)) {
                     return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
                 }
-            } else if ((userRole === 'administracion' || userRole === 'employee') && userId) {
-                const user = await prisma.user.findUnique({ where: { id: parseInt(userId) } });
+            } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+                const user = await prisma.user.findUnique({ where: { id: userId } });
                 if (user.branchId !== bId) {
                     return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
                 }
@@ -815,17 +820,17 @@ app.get('/api/shifts', requirePermission(PERMISSIONS.SHIFTS_VIEW), async (req, r
 
             where.zone = where.zone || {};
             where.zone.branchId = bId;
-        } else if (req.query.role === 'responsable' && req.query.userId) {
+        } else if (req.user.role === 'responsable') {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(req.query.userId) },
+                where: { id: req.user.id },
                 include: { managedBranches: true }
             });
             const branchIds = user.managedBranches.map(b => b.id);
             branchIds.push(user.branchId);
             where.zone = where.zone || {};
             where.zone.branchId = { in: branchIds };
-        } else if ((req.query.role === 'administracion' || req.query.role === 'employee' || req.query.role === 'jefe_departamento') && req.query.userId) {
-            const user = await prisma.user.findUnique({ where: { id: parseInt(req.query.userId) } });
+        } else if (req.user.role === 'administracion' || req.user.role === 'employee' || req.user.role === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: req.user.id } });
             where.zone = where.zone || {};
             where.zone.branchId = user.branchId;
         }
@@ -859,37 +864,37 @@ const getMonthRange = (monthStr) => {
 // Estadísticas individuales por mes
 app.get('/api/stats/employee/:userId', async (req, res) => {
     const { userId } = req.params;
-    const { month } = req.query; // Formato "YYYY-MM"
+    const { month } = req.query;
 
     try {
         if (!month) return res.status(400).json({ message: 'Mes requerido (YYYY-MM)' });
         
-        const requesterRole = req.query.role;
-        const requesterId = req.query.userId;
-        const targetUserId = parseInt(userId);
+        const requesterRole = req.user.role;
+        const requesterId   = req.user.id;
+        const targetUserId  = parseInt(userId);
 
-        if (requesterRole === 'employee' && parseInt(requesterId) !== targetUserId) {
+        if (requesterRole === 'employee' && requesterId !== targetUserId) {
             return res.status(403).json({ message: 'No tienes permiso para ver estadísticas de otros usuarios' });
         }
 
         if (requesterRole === 'administracion' || requesterRole === 'responsable' || requesterRole === 'jefe_departamento') {
-             const [requester, targetUser] = await Promise.all([
-                 prisma.user.findUnique({ where: { id: parseInt(requesterId) }, include: { managedBranches: true } }),
-                 prisma.user.findUnique({ where: { id: targetUserId } })
-             ]);
+            const [requester, targetUser] = await Promise.all([
+                prisma.user.findUnique({ where: { id: requesterId }, include: { managedBranches: true } }),
+                prisma.user.findUnique({ where: { id: targetUserId } })
+            ]);
 
-             if (!targetUser) return res.status(404).json({ message: 'Usuario no encontrado' });
+            if (!targetUser) return res.status(404).json({ message: 'Usuario no encontrado' });
 
-             if ((requesterRole === 'administracion' || requesterRole === 'jefe_departamento') && requester.branchId !== targetUser.branchId) {
-                 return res.status(403).json({ message: 'No tienes acceso a este usuario' });
-             }
+            if ((requesterRole === 'administracion' || requesterRole === 'jefe_departamento') && requester.branchId !== targetUser.branchId) {
+                return res.status(403).json({ message: 'No tienes acceso a este usuario' });
+            }
 
-             if (requesterRole === 'responsable') {
-                 const allowed = [requester.branchId, ...requester.managedBranches.map(b => b.id)];
-                 if (!allowed.includes(targetUser.branchId)) {
-                     return res.status(403).json({ message: 'No tienes acceso a este usuario' });
-                 }
-             }
+            if (requesterRole === 'responsable') {
+                const allowed = [requester.branchId, ...requester.managedBranches.map(b => b.id)];
+                if (!allowed.includes(targetUser.branchId)) {
+                    return res.status(403).json({ message: 'No tienes acceso a este usuario' });
+                }
+            }
         }
 
         const { start, end } = getMonthRange(month);
@@ -958,20 +963,20 @@ app.get('/api/stats/ranking', async (req, res) => {
     try {
         if (!branchId || !month) return res.status(400).json({ message: 'Sucursal y Mes requeridos' });
         const bId = parseInt(branchId);
-        const userRole = req.query.role;
-        const uId = req.query.userId;
+        const userRole = req.user.role;
+        const uId      = req.user.id;
 
-        if (userRole === 'responsable' && uId) {
+        if (userRole === 'responsable') {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(uId) },
+                where: { id: uId },
                 include: { managedBranches: true }
             });
             const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
             if (!allowed.includes(bId)) {
                 return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
             }
-        } else if ((userRole === 'administracion' || userRole === 'employee') && uId) {
-            const user = await prisma.user.findUnique({ where: { id: parseInt(uId) } });
+        } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: uId } });
             if (user.branchId !== bId) {
                 return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
             }
@@ -1022,12 +1027,12 @@ app.get('/api/stats/vacations', async (req, res) => {
 
     try {
         let bId = branchId ? parseInt(branchId) : null;
-        const userRole = req.query.role;
-        const uId = req.query.userId;
+        const userRole = req.user.role;
+        const uId      = req.user.id;
 
-        if (userRole === 'responsable' && uId) {
+        if (userRole === 'responsable') {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(uId) },
+                where: { id: uId },
                 include: { managedBranches: true }
             });
             const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
@@ -1035,8 +1040,8 @@ app.get('/api/stats/vacations', async (req, res) => {
                 return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
             }
             if (!bId) bId = { in: allowed };
-        } else if ((userRole === 'administracion' || userRole === 'employee') && uId) {
-            const user = await prisma.user.findUnique({ where: { id: parseInt(uId) } });
+        } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: uId } });
             if (bId && user.branchId !== bId) {
                 return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
             }
@@ -1501,11 +1506,11 @@ app.get('/api/requests', requirePermission(PERMISSIONS.REQUESTS_VIEW), async (re
             ];
         } else if (branchId) {
             const bId = parseInt(branchId);
-            const userRole = req.query.role;
-            const uId = req.query.userId;
+            const userRole = req.user.role;
+            const uId      = req.user.id;
             
-            if (userRole === 'administracion' || userRole === 'employee') {
-                const user = await prisma.user.findUnique({ where: { id: parseInt(uId) } });
+            if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+                const user = await prisma.user.findUnique({ where: { id: uId } });
                 if (user.branchId !== bId) {
                     return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
                 }
@@ -1548,9 +1553,6 @@ app.get('/api/requests', requirePermission(PERMISSIONS.REQUESTS_VIEW), async (re
 app.patch('/api/requests/:id/status', requirePermission(PERMISSIONS.REQUESTS_APPROVE), async (req, res) => {
     const { id } = req.params;
     const { status, managerComment } = req.body;
-
-    // Solo Admin/Responsable pueden ejecutar esto
-    // En producción deberías validar el rol del usuario autenticado
 
     if (!['APPROVED', 'REJECTED'].includes(status)) {
         return res.status(400).json({ message: 'Estado inválido. Debe ser APPROVED o REJECTED' });
@@ -1657,7 +1659,7 @@ app.patch('/api/requests/:id/status', requirePermission(PERMISSIONS.REQUESTS_APP
             // Audit Log
             const actorId = req.body.adminId || null;
             if (actorId) {
-                await createAuditLog(parseInt(actorId), 'Rechazo de Solicitud', {
+                await createAuditLog(prisma, parseInt(actorId), 'Rechazo de Solicitud', {
                     requestId: id,
                     targetUserId: request.userId,
                     type: request.type,
@@ -1868,7 +1870,8 @@ app.patch('/api/swaps/:id/approve', requirePermission(PERMISSIONS.SWAPS_APPROVE)
         res.json({ message: 'Intercambio aprobado y turnos actualizados' });
     } catch (err) {
         console.error('Approve swap error:', err);
-        res.status(500).json({ message: 'Error al aprobar el intercambio' });
+        const status = err.message.includes('ya no está pendiente') ? 400 : 500;
+        res.status(status).json({ message: err.message || 'Error al aprobar el intercambio' });
     }
 });
 
@@ -1920,12 +1923,12 @@ app.get('/api/stats/vacations/weekly', async (req, res) => {
 
     try {
         let bId = branchId ? parseInt(branchId) : null;
-        const userRole = req.query.role;
-        const uId = req.query.userId;
+        const userRole = req.user.role;
+        const uId      = req.user.id;
 
-        if (userRole === 'responsable' && uId) {
+        if (userRole === 'responsable') {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(uId) },
+                where: { id: uId },
                 include: { managedBranches: true }
             });
             const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
@@ -1933,8 +1936,8 @@ app.get('/api/stats/vacations/weekly', async (req, res) => {
                 return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
             }
             if (!bId) bId = { in: allowed };
-        } else if ((userRole === 'administracion' || userRole === 'employee') && uId) {
-            const user = await prisma.user.findUnique({ where: { id: parseInt(uId) } });
+        } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: uId } });
             if (bId && user.branchId !== bId) {
                 return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
             }
@@ -2024,6 +2027,13 @@ async function validateAndCreateShift({ userId, zoneId, startDate, endDate, type
 
     if (durationHours <= 0) {
         throw new Error('La fecha de fin debe ser posterior a la de inicio');
+    }
+
+    // Prevención de asignación en el pasado (excepto SICK_LEAVE que puede ser retroactiva)
+    const now = new Date();
+    // Permitimos un margen de 1 hora para evitar problemas con latencia o relojes ligeramente desajustados
+    if (type !== 'SICK_LEAVE' && start < new Date(now.getTime() - 60 * 60 * 1000)) {
+        throw new Error('No se pueden asignar turnos en el pasado.');
     }
 
     if (isNaN(uId) || isNaN(zId)) {
@@ -2175,7 +2185,7 @@ async function validateAndCreateShift({ userId, zoneId, startDate, endDate, type
 // Auxiliar para logging de turnos
 async function logShiftAction(actorId, action, shift) {
     if (!actorId) return;
-    await createAuditLog(parseInt(actorId), action, {
+    await createAuditLog(prisma, parseInt(actorId), action, {
         shiftId: shift.id,
         targetUserId: shift.userId,
         type: shift.type,
@@ -2533,7 +2543,9 @@ app.post('/api/announcements', requirePermission(PERMISSIONS.ANNOUNCEMENTS_CREAT
 
 // GET /api/announcements - Listar anuncios
 app.get('/api/announcements', requirePermission(PERMISSIONS.ANNOUNCEMENTS_VIEW), async (req, res) => {
-    const { branchId, userId, role } = req.query;
+    const { branchId } = req.query;
+    const userRole = req.user.role;
+    const userId   = req.user.id;
     try {
         let whereClause = {
             OR: [
@@ -2544,32 +2556,32 @@ app.get('/api/announcements', requirePermission(PERMISSIONS.ANNOUNCEMENTS_VIEW),
 
         if (branchId) {
             const bId = parseInt(branchId);
-            if (req.query.role === 'responsable' && userId) {
+            if (userRole === 'responsable') {
                 const user = await prisma.user.findUnique({
-                    where: { id: parseInt(userId) },
+                    where: { id: userId },
                     include: { managedBranches: true }
                 });
                 const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
                 if (!allowed.includes(bId)) {
                     return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
                 }
-            } else if ((req.query.role === 'administracion' || req.query.role === 'employee' || req.query.role === 'jefe_departamento') && userId) {
-                const user = await prisma.user.findUnique({ where: { id: parseInt(userId) } });
+            } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+                const user = await prisma.user.findUnique({ where: { id: userId } });
                 if (user.branchId !== bId) {
                     return res.status(403).json({ message: 'No tienes acceso a esta sucursal' });
                 }
             }
             whereClause.branchId = bId;
-        } else if (req.query.role === 'responsable' && userId) {
+        } else if (userRole === 'responsable') {
             const user = await prisma.user.findUnique({
-                where: { id: parseInt(userId) },
+                where: { id: userId },
                 include: { managedBranches: true }
             });
             const branchIds = user.managedBranches.map(b => b.id);
             branchIds.push(user.branchId);
             whereClause.branchId = { in: branchIds };
-        } else if ((req.query.role === 'administracion' || req.query.role === 'employee' || req.query.role === 'jefe_departamento') && userId) {
-            const user = await prisma.user.findUnique({ where: { id: parseInt(userId) } });
+        } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: userId } });
             whereClause.branchId = user.branchId;
         } else {
             return res.status(400).json({ message: 'branchId es obligatorio' });
@@ -2594,18 +2606,16 @@ app.get('/api/announcements', requirePermission(PERMISSIONS.ANNOUNCEMENTS_VIEW),
             ]
         });
 
-        // Marcar si el usuario actual ha leído cada anuncio (opcional, útil para UI)
+        // Mark read status for current authenticated user
         let processedAnnouncements = announcements;
-        if (userId) {
-            const reads = await prisma.announcementRead.findMany({
-                where: { userId: parseInt(userId) }
-            });
-            const readIds = new Set(reads.map(r => r.announcementId));
-            processedAnnouncements = announcements.map(a => ({
-                ...a,
-                isRead: readIds.has(a.id)
-            }));
-        }
+        const reads = await prisma.announcementRead.findMany({
+            where: { userId: userId }
+        });
+        const readIds = new Set(reads.map(r => r.announcementId));
+        processedAnnouncements = announcements.map(a => ({
+            ...a,
+            isRead: readIds.has(a.id)
+        }));
 
         res.json(processedAnnouncements);
     } catch (err) {
@@ -2641,11 +2651,10 @@ app.post('/api/announcements/:id/read', async (req, res) => {
 });
 
 // GET /api/announcements/:id/stats - Estadísticas (Solo Managers/Admin)
-app.get('/api/announcements/:id/stats', async (req, res) => {
+app.get('/api/announcements/:id/stats', requirePermission(PERMISSIONS.ANNOUNCEMENTS_VIEW), async (req, res) => {
     const { id } = req.params;
-    const { role, branchId } = req.query;
 
-    if (role !== 'admin' && role !== 'responsable') {
+    if (req.user.role !== 'admin' && req.user.role !== 'responsable') {
         return res.status(403).json({ message: 'No tienes permiso para ver estadísticas' });
     }
 
@@ -2720,19 +2729,20 @@ app.post('/api/announcements/:id/comments', async (req, res) => {
 // DELETE /api/announcements/:id - Eliminar anuncio
 app.delete('/api/announcements/:id', requirePermission(PERMISSIONS.ANNOUNCEMENTS_DELETE), async (req, res) => {
     const { id } = req.params;
-    const { userId, role } = req.body;
+    const role   = req.user.role;
+    const userId = req.user.id;
 
     try {
         const announcement = await prisma.announcement.findUnique({ where: { id: parseInt(id) } });
         if (!announcement) return res.status(404).json({ message: 'Anuncio no encontrado' });
 
         // Solo el autor puede eliminar
-        if (announcement.authorId !== parseInt(userId)) {
+        if (announcement.authorId !== userId) {
             return res.status(403).json({ message: 'Solo el autor puede eliminar el anuncio' });
         }
 
-        // Restricción de 48h para empleados (roles no manager)
-        if ((role === 'employee' || role === 'administracion' || role === 'jefe_departamento') && userId) {
+        // Restricción de 48h para roles no-manager
+        if (role === 'employee' || role === 'administracion' || role === 'jefe_departamento') {
             const now = new Date();
             const created = new Date(announcement.createdAt);
             const hoursElapsed = (now - created) / (1000 * 60 * 60);
@@ -2741,7 +2751,6 @@ app.delete('/api/announcements/:id', requirePermission(PERMISSIONS.ANNOUNCEMENTS
             }
         }
 
-        // Eliminar comentarios y lecturas primero (integridad referencial)
         await prisma.comment.deleteMany({ where: { announcementId: parseInt(id) } });
         await prisma.announcementRead.deleteMany({ where: { announcementId: parseInt(id) } });
         await prisma.announcement.delete({ where: { id: parseInt(id) } });
@@ -2753,10 +2762,13 @@ app.delete('/api/announcements/:id', requirePermission(PERMISSIONS.ANNOUNCEMENTS
     }
 });
 
+
 // PUT /api/announcements/:id - Editar anuncio
 app.put('/api/announcements/:id', requirePermission(PERMISSIONS.ANNOUNCEMENTS_EDIT), async (req, res) => {
     const { id } = req.params;
-    const { userId, role, title, content, type, expiresAt, allowComments } = req.body;
+    const { title, content, type, expiresAt, allowComments } = req.body;
+    const role   = req.user.role;
+    const userId = req.user.id;
 
     if (role !== 'admin' && role !== 'responsable') {
         return res.status(403).json({ message: 'Solo los responsables pueden editar anuncios' });
@@ -2766,7 +2778,7 @@ app.put('/api/announcements/:id', requirePermission(PERMISSIONS.ANNOUNCEMENTS_ED
         const announcement = await prisma.announcement.findUnique({ where: { id: parseInt(id) } });
         if (!announcement) return res.status(404).json({ message: 'Anuncio no encontrado' });
 
-        if (announcement.authorId !== parseInt(userId)) {
+        if (announcement.authorId !== userId) {
             return res.status(403).json({ message: 'Solo el autor puede editar el anuncio' });
         }
 
@@ -2791,29 +2803,29 @@ app.put('/api/announcements/:id', requirePermission(PERMISSIONS.ANNOUNCEMENTS_ED
     }
 });
 
+
 // ========== SISTEMA DE AUDITORÍA (AUDIT LOGS) ==========
 
 app.get('/api/audit-logs', requirePermission(PERMISSIONS.AUDIT_LOGS_VIEW), async (req, res) => {
     const { action, userId, startDate, endDate } = req.query;
 
     try {
-        const userRole = req.query.role;
-        const adminId = req.query.adminId; // El frontend envía adminId para los logs
+        const userRole = req.user.role;
+        const adminId  = req.user.id;
 
         const where = {};
-        if (adminId) {
-            if (userRole === 'responsable') {
-                const user = await prisma.user.findUnique({
-                    where: { id: parseInt(adminId) },
-                    include: { managedBranches: true }
-                });
-                const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
-                where.user = { branchId: { in: allowed } };
-            } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
-                const user = await prisma.user.findUnique({ where: { id: parseInt(adminId) } });
-                where.user = { branchId: user.branchId };
-            }
+        if (userRole === 'responsable') {
+            const user = await prisma.user.findUnique({
+                where: { id: adminId },
+                include: { managedBranches: true }
+            });
+            const allowed = [user.branchId, ...user.managedBranches.map(b => b.id)];
+            where.user = { branchId: { in: allowed } };
+        } else if (userRole === 'administracion' || userRole === 'employee' || userRole === 'jefe_departamento') {
+            const user = await prisma.user.findUnique({ where: { id: adminId } });
+            where.user = { branchId: user.branchId };
         }
+        // admin: no filter (sees all)
 
         if (action) {
             where.action = { contains: action, mode: 'insensitive' };
@@ -2853,20 +2865,12 @@ app.get('/api/audit-logs', requirePermission(PERMISSIONS.AUDIT_LOGS_VIEW), async
 // ========== BACKUP MANUAL (ADMIN) ==========
 
 app.get('/api/admin/backup', requirePermission(PERMISSIONS.BACKUPS_MANAGE), async (req, res) => {
-    const { adminId } = req.query;
-
-    if (!adminId) {
-        return res.status(400).json({ message: 'adminId es obligatorio' });
-    }
-
     try {
-        const user = await prisma.user.findUnique({
-            where: { id: parseInt(adminId) }
-        });
-
-        if (!user || user.role !== 'admin') {
+        // Use JWT identity — no need for adminId query param
+        if (req.user.role !== 'admin') {
             return res.status(403).json({ message: 'No autorizado para realizar respaldos. Se requiere rol ADMIN.' });
         }
+        const adminId = req.user.id;
 
         const dateStr = new Date().toISOString().split('T')[0];
         const fileName = `backup_auteide_${dateStr}.sql`;
@@ -2901,7 +2905,7 @@ app.get('/api/admin/backup', requirePermission(PERMISSIONS.BACKUPS_MANAGE), asyn
                 // Can't reliably send an error response here because headers/data might have already been sent
             } else {
                 console.log('Database backup successfully generated and sent.');
-                await createAuditLog(parseInt(adminId), 'Descarga de Backup Manual', {
+                await createAuditLog(prisma, parseInt(adminId), 'Descarga de Backup Manual', {
                     fileName
                 });
             }
@@ -2953,7 +2957,7 @@ app.post('/api/vacation-adjustments', requirePermission(PERMISSIONS.VACATION_ADJ
             }
         });
 
-        await createAuditLog(parseInt(actorId), 'Ajuste de Vacaciones Creado', {
+        await createAuditLog(prisma, parseInt(actorId), 'Ajuste de Vacaciones Creado', {
             targetUserId: userId,
             days,
             reason,
@@ -3017,7 +3021,7 @@ app.delete('/api/vacation-adjustments/:id', requirePermission(PERMISSIONS.VACATI
 
         await prisma.vacationAdjustment.delete({ where: { id: parseInt(id) } });
 
-        await createAuditLog(parseInt(actorId), 'Ajuste de Vacaciones Eliminado', {
+        await createAuditLog(prisma, parseInt(actorId), 'Ajuste de Vacaciones Eliminado', {
             adjustmentId: id,
             targetUserId: adjustment.userId,
             days: adjustment.days,
@@ -3052,7 +3056,7 @@ app.put('/api/role-permissions', requirePermission(PERMISSIONS.AUTH_ROLES_MANAGE
         });
 
         if (adminId) {
-            await createAuditLog(parseInt(adminId), 'Actualización de Permisos de Rol', {
+            await createAuditLog(prisma, parseInt(adminId), 'Actualización de Permisos de Rol', {
                 role,
                 permissionsCount: permissions.length
             });

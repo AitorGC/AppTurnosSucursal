@@ -9,12 +9,24 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment files
+# Environment files — NEVER commit secrets
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+
+# Sensitive data files — employee/user data must never be in VCS
+backend/usuarios.csv
+backend/*.csv
+
+# Debug / one-off scripts — keep out of repo
+backend/debug_*.js
+backend/create_*.js
 
 # OS generated files
 .DS_Store

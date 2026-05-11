@@ -86,7 +86,7 @@ describe('POST /api/shifts', () => {
     it('✅ devuelve 201 cuando un responsable crea un turno válido', async () => {
         setupPermissionCheck();
         // validateAndCreateShift calls user.findUnique for branchId
-        db.user.findUnique.mockResolvedValueOnce({ id: 1, branchId: 1 });
+        db.user.findUnique.mockResolvedValueOnce({ id: 1, branchId: 1, isActive: true });
         // No nearby shifts
         db.shift.findMany.mockResolvedValue([]);
         // Created shift
@@ -122,9 +122,9 @@ describe('POST /api/shifts', () => {
      *
      * @see code_audit_report.md — Área 4, "Un Mánager Puede Asignar Turnos en el Pasado"
      */
-    it.failing('🟡 EDGE CASE: debería rechazar turnos con fecha en el pasado [BUG DOCUMENTADO]', async () => {
+    it('🔴 debería rechazar turnos con fecha en el pasado', async () => {
         setupPermissionCheck();
-        db.user.findUnique.mockResolvedValueOnce({ id: 1, branchId: 1 });
+        db.user.findUnique.mockResolvedValueOnce({ id: 1, branchId: 1, isActive: true });
         db.shift.findMany.mockResolvedValue([]);
         db.shift.create.mockResolvedValue({ id: 99 });
 

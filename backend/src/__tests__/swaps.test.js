@@ -78,7 +78,7 @@ describe('PATCH /api/swaps/:id/approve', () => {
         db.shiftRequest.findUnique.mockResolvedValue(PENDING_SWAP);
         // $transaction will invoke the callback with db (default mock behaviour)
         db.shift.update.mockResolvedValue({});
-        db.shiftRequest.update.mockResolvedValue({ ...PENDING_SWAP, status: 'APPROVED' });
+        db.shiftRequest.updateMany.mockResolvedValue({ count: 1 });
         db.notification.create.mockResolvedValue({});
         db.auditLog.create.mockResolvedValue({});
 
@@ -101,10 +101,12 @@ describe('PATCH /api/swaps/:id/approve', () => {
      *
      * @see code_audit_report.md — Área 1, "Race Condition en Aprobación de SWAP"
      */
-    it.failing('🟡 RACE CONDITION: debería devolver 400 si el swap ya fue aprobado [BUG DOCUMENTADO]', async () => {
+    it('✅ RACE CONDITION: debería rechazar con 500/400 si el swap ya no está pendiente', async () => {
         setupPermissionCheck();
         // Simula el segundo request que llega cuando el swap ya está APPROVED
         db.shiftRequest.findUnique.mockResolvedValue({ ...PENDING_SWAP, status: 'APPROVED' });
+        // updateMany returns count: 0 if no match found (e.g. already APPROVED)
+        db.shiftRequest.updateMany.mockResolvedValue({ count: 0 });
 
         const res = await request(app)
             .patch('/api/swaps/1/approve')

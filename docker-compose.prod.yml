@@ -42,8 +42,7 @@ services:
     volumes:
       - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/certs:/etc/nginx/certs:ro
-      - ./README_TECH.md:/usr/share/nginx/html/README_TECH.md:ro
-      - ./USER_MANUAL.md:/usr/share/nginx/html/USER_MANUAL.md:ro
+      # NOTE: Internal docs are NOT served via web. Keep markdown files off the webroot.
 
     depends_on:
       - backend
