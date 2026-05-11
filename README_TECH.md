@@ -31,6 +31,7 @@ Aplicación **monorepo** con frontend desacoplado del backend, comunicados vía 
 | **ORM** | Prisma | 5 | Consultas tipadas, migraciones |
 | **Base de Datos** | PostgreSQL | 15 | Persistencia relacional |
 | **Auth** | JWT + Bcrypt | — | Tokens de sesión + hash de contraseñas |
+| **Exportación** | jsPDF + SheetJS | — | Generación de reportes PDF y Excel en cliente |
 
 ---
 
@@ -356,3 +357,8 @@ git config --global user.name "Deploy Bot"
 
 **Decisión:** Los permisos de rol se almacenan en la tabla `RolePermission`.  
 **Razón:** Permite modificar los permisos de un rol sin necesidad de redespliegue. Los identificadores de permisos están definidos como constantes en `constants/permissions.js` para prevenir errores tipográficos.
+
+### ADR-006: Generación de reportes en el cliente (Frontend)
+
+**Decisión:** Uso de `jsPDF` y `xlsx` (SheetJS) directamente en el navegador.  
+**Razón:** Alivio de carga en el servidor y mejor experiencia de usuario (descarga instantánea). La API ya proporciona los datos necesarios, por lo que no es necesario implementar lógica de renderizado PDF/Excel en el backend (evitando dependencias pesadas como Puppeteer).

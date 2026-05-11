@@ -159,6 +159,14 @@ Si eres responsable de más de un centro:
 3. **Zonas y Subzonas:** Asegúrate de asignar a cada persona su subzona correspondiente para evitar confusiones operativas.
 
 > 💡 **Consejo:** Puedes usar los controles de navegación del calendario para moverse semana a semana y planificar con antelación.
+161: 
+162: #### 4.2.1 Exportar el Cuadrante (PDF / Excel)
+163: 
+164: Junto al botón de asignación, encontrarás dos nuevos iconos para exportar la vista actual:
+165: - 📄 **PDF:** Genera un documento listo para imprimir con el cuadrante semanal o mensual. Los empleados aparecen en filas y los días en columnas, incluyendo sus horarios y zonas.
+166: - 📊 **Excel:** Descarga un archivo `.xlsx` con los datos en formato tabla para realizar análisis adicionales o procesar la información en otras herramientas.
+167: 
+168: > ℹ️ **Nota:** La exportación respeta los filtros de Sucursal y Zona que tengas seleccionados en ese momento.
 
 ---
 
@@ -191,7 +199,7 @@ Perfil diseñado para personal que realiza cálculos de horas y supervisa la ges
 1. Accede a la sección **Cálculo** del menú lateral.
 2. Selecciona el rango de fechas (ej. _Mes de Marzo_).
 3. El sistema generará una tabla con las horas trabajadas por cada empleado, diferenciando festivos y tipos de turno.
-4. **Exportación:** Puedes copiar estos datos para informes mensuales de RRHH.
+4. **Exportación:** Puedes copiar estos datos para informes mensuales de RRHH o utilizar los botones de exportación rápida (PDF/Excel) si están habilitados para tu perfil.
 
 ---
 

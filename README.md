@@ -62,6 +62,7 @@ Las características que hacen este proyecto diferente:
 | 🛡️ **Auditoría Integral** | Registro inmutable de acciones críticas: quién, qué, cuándo y desde qué IP |
 | 💾 **Backups Integrados** | Generación de `pg_dump` bajo demanda desde la interfaz de administración |
 | 📱 **PWA Ready** | Instalable en iOS y Android, interfaz optimizada para uso en almacén y mostrador |
+| 📊 **Exportación** | Generación de reportes PDF y Excel directamente desde el cuadrante |
 
 ---
 
@@ -244,7 +245,7 @@ El sistema implementa un control de acceso basado en roles (RBAC) con 5 niveles:
 ## 🗺️ Hoja de Ruta
 
 - [x] v1.0 — Plataforma base con RBAC, turnos, vacaciones y auditoría
-- [ ] v1.1 — Exportación de cuadrantes a PDF / Excel
+- [x] v1.1 — Exportación de cuadrantes a PDF / Excel
 - [ ] v1.2 — Notificaciones push via PWA (Web Push API)
 - [ ] v2.0 — App móvil nativa (React Native)
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, ChevronLeft, ChevronRight, Clock, Trash2 } from 'lucide-react';
+import { Plus, ChevronLeft, ChevronRight, Clock, Trash2, FileText, FileSpreadsheet } from 'lucide-react';
 import ShiftFormModal from '../components/ShiftFormModal';
 import ZoneSummaryModal from '../components/ZoneSummaryModal';
 import SwapSelectorModal from '../components/SwapSelectorModal';
@@ -7,6 +7,7 @@ import API_URL from '../apiConfig';
 import { getShiftColors } from '../utils/colors';
 import { usePermissions } from '../hooks/usePermissions';
 import { PERMISSIONS } from '../constants/permissions';
+
 
 const QuickZoneView = ({ shifts, zones }) => {
     const now = new Date();
@@ -504,6 +505,39 @@ const Shifts = () => {
                             <ChevronRight size={20} />
                         </button>
                     </div>
+
+                    {/* Botones de Exportación */}
+                    <div className="flex bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-1">
+                        <button
+                            onClick={async () => {
+                                const { exportSchedulePDF } = await import('../utils/exportSchedule');
+                                exportSchedulePDF(shifts, visibleDates, { 
+                                    branchName: branches.find(b => b.id === parseInt(selectedBranchId))?.name || (selectedBranchId === '' && !isAdmin ? user.branch?.name : 'Todas'),
+                                    zoneName: zones.find(z => z.id === parseInt(selectedZoneId))?.name || 'Todas'
+                                });
+                            }}
+                            disabled={viewType === 'quick'}
+                            className={`p-2 rounded-md transition ${viewType === 'quick' ? 'opacity-30 cursor-not-allowed text-gray-400' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                            title="Exportar PDF"
+                        >
+                            <FileText size={20} />
+                        </button>
+                        <button
+                            onClick={async () => {
+                                const { exportScheduleExcel } = await import('../utils/exportSchedule');
+                                exportScheduleExcel(shifts, visibleDates, { 
+                                    branchName: branches.find(b => b.id === parseInt(selectedBranchId))?.name || (selectedBranchId === '' && !isAdmin ? user.branch?.name : 'Todas'),
+                                    zoneName: zones.find(z => z.id === parseInt(selectedZoneId))?.name || 'Todas'
+                                });
+                            }}
+                            disabled={viewType === 'quick'}
+                            className={`p-2 rounded-md transition ${viewType === 'quick' ? 'opacity-30 cursor-not-allowed text-gray-400' : 'text-emerald-600 dark:text-emerald-400 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                            title="Exportar Excel"
+                        >
+                            <FileSpreadsheet size={20} />
+                        </button>
+                    </div>
+
                     {hasPermission(PERMISSIONS.SHIFTS_CREATE) && (
                         <button
                             onClick={() => { setShiftToEdit(null); setIsModalOpen(true); }}
