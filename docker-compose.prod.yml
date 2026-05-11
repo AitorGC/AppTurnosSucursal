@@ -23,6 +23,8 @@ services:
     environment:
       DATABASE_URL: ${DATABASE_URL}
       JWT_SECRET: ${JWT_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
+      EXTRA_CORS_ORIGIN: ${EXTRA_CORS_ORIGIN}
       NODE_ENV: production
       PORT: 3000
     depends_on:

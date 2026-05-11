@@ -27,9 +27,13 @@ services:
     restart: always
     ports:
       - "4000:3000" # Mapeo host:4000 -> container:3000
+    env_file:
+      - ./backend/.env
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/turnos_db
       PORT: 3000
+      FRONTEND_URL: https://172.16.12.66
+      EXTRA_CORS_ORIGIN: http://172.16.12.66
     depends_on:
       db:
         condition: service_healthy

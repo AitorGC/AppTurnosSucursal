@@ -85,6 +85,7 @@ const port = process.env.PORT || 3000;
 const allowedOrigins = [
     process.env.FRONTEND_URL,
     process.env.EXTRA_CORS_ORIGIN,
+    'https://172.16.12.66', // Added to fix login error in current environment
     'http://localhost:3000',
     'http://127.0.0.1:3000'
 ].filter(Boolean);
